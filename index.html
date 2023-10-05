@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>time.fyi — All things time related at your fingertips.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/global.css" />
+  </head>
+  <body>
+    <!-- Timezone Popup -->
+    <div
+      id="timezone-popup"
+      class="fixed hidden top-0 left-0 bottom-0 right-0 bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center"
+    >
+      <div id="popup-inner" class="p-5 min-w-[500px] bg-white rounded-md">
+        <div class="flex items-center justify-between">
+          <h2 class="font-semibold text-2xl mb-0.5">Add Timezone</h2>
+          <span
+            id="close-popup-btn"
+            class="bg-gray-700 px-3 cursor-pointer hover:bg-black rounded-md block text-white p-2"
+            >&times;</span
+          >
+        </div>
+        <p class="text-gray-500 mb-4">
+          Pick a timezone below to add to the list
+        </p>
+        <select
+          id="timezone-select"
+          name="#"
+          class="border w-full block p-2 rounded-md mb-2"
+        >
+          <option value="">Select Timezone</option>
+        </select>
+        <p id="error-msg" class="text-red-500 mb-4 hidden">
+          Pick a timezone please!
+        </p>
+        <button
+          id="add-timezone-popup-btn"
+          class="bg-gray-700 hover:bg-black rounded-md block w-full text-white p-2"
+        >
+          Add Timezone
+        </button>
+      </div>
+    </div>
+
+    <!-- Time screen -->
+    <div class="flex">
+      <div class="flex flex-1 justify-center items-center h-screen">
+        <div class="flex flex-col items-end">
+          <p class="text-lg mb-2 text-gray-400"><span id="timezone"></span></p>
+          <p class="text-9xl mb-2">
+            <span id="time" class="font-extrabold tabular-nums">
+              <span class="animate text-gray-300 animate-pulse"
+                >Loading ...</span
+              >
+            </span>
+          </p>
+          <p class="text-2xl text-gray-400 mb-2"><span id="date"></span></p>
+        </div>
+      </div>
+      <div id="all-timezones" class="w-[350px] border-l border-left-black">
+        <button
+          id="add-timezone-btn"
+          class="p-3 text-center border-b text-gray-400 hover:text-black hover:bg-gray-100 block w-full focus:outline-none focus-visible:outline-none"
+        >
+          + Add Timezone
+        </button>
+      </div>
+    </div>
+    <script src="js/time.js"></script>
+    <script src="js/timezone-popup.js"></script>
+  </body>
+</html>
