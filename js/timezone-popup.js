@@ -1,6 +1,7 @@
 const timezoneSelect = document.getElementById("timezone-select");
 const selectedTimezone = timezoneSelect.value;
 const errorMsg = document.getElementById("error-msg");
+const sameZoneError = document.getElementById("same-timezone-error");
 
 
 function loadTimezones() {
@@ -28,10 +29,26 @@ function closeTimezonePopup() {
 
 function addSelectedTimezone() {
   const timezoneSelect = document.getElementById("timezone-select");
+  const timezoneSpans = document.getElementsByClassName("timezone-name");
+
   const selectedTimezone = timezoneSelect.value;
 
   if (!selectedTimezone) {
     errorMsg.classList.remove("hidden");
+    return;
+  }
+
+  let timezoneExists = false;
+  for (const span of timezoneSpans) {
+    if (span.innerHTML === selectedTimezone) {
+      timezoneExists = true;
+      break; // exit the loop if a matching timezone span is found
+    }
+  }
+
+  if (timezoneExists) {
+    sameZoneError.classList.remove("hidden");
+    return;
   }
 
   const currentTime = new Date().toLocaleString("en-US", {
@@ -48,13 +65,14 @@ function addSelectedTimezone() {
   timezoneButton.innerHTML =
     '<span class="font-semibold">' +
     currentTime +
-    '</span> <span class="text-gray-400">' +
+    '</span> <span class="text-gray-400 timezone-name">' +
     selectedTimezone +
     "</span>";
   const timezonePanel = document.getElementById("all-timezones");
   timezonePanel.prepend(timezoneButton);
-
   timezoneSelect.value = "";
+  sameZoneError.classList.add("hidden");
+  closeTimezonePopup();
 }
 
 document
@@ -74,7 +92,6 @@ document
   .getElementById("add-timezone-popup-btn")
   .addEventListener("click", function () {
     addSelectedTimezone();
-    closeTimezonePopup();
   });
 
 
