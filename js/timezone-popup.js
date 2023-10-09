@@ -1,11 +1,13 @@
+
 const timezoneSelect = document.getElementById("timezone-select");
 const selectedTimezone = timezoneSelect.value;
 const errorMsg = document.getElementById("error-msg");
 const sameZoneError = document.getElementById("same-timezone-error");
-
+const timezoneSpans = document.getElementsByClassName("timezone-name");
+const popup = document.getElementById("timezone-popup");
+const timezonePanel = document.getElementById("all-timezones");
 
 function loadTimezones() {
-  const timezoneSelect = document.getElementById("timezone-select");
   if (timezoneSelect.options.length > 1) {
     return;
   }
@@ -16,21 +18,16 @@ function loadTimezones() {
 }
 
 function showTimezonePopup() {
-  const popup = document.getElementById("timezone-popup");
   popup.classList.remove("hidden");
 }
 
 function closeTimezonePopup() {
-  const popup = document.getElementById("timezone-popup");
   popup.classList.add("hidden");
   timezoneSelect.value = "";
   errorMsg.classList.add("hidden");
 }
 
 function addSelectedTimezone() {
-  const timezoneSelect = document.getElementById("timezone-select");
-  const timezoneSpans = document.getElementsByClassName("timezone-name");
-
   const selectedTimezone = timezoneSelect.value;
 
   if (!selectedTimezone) {
@@ -68,10 +65,27 @@ function addSelectedTimezone() {
     '</span> <span class="text-gray-400 timezone-name">' +
     selectedTimezone +
     "</span>";
-  const timezonePanel = document.getElementById("all-timezones");
   timezonePanel.prepend(timezoneButton);
   timezoneSelect.value = "";
   sameZoneError.classList.add("hidden");
+  const buttons = timezonePanel.getElementsByTagName("button");
+  console.log(buttons)
+  for (const button of buttons) {
+    button.addEventListener("click", function () {
+      function updateTime() {
+        const timezone = button.getElementsByClassName("timezone-name")[0].innerHTML;
+        const date = new Date().toLocaleString("en-US", {
+          timeZone: timezone,
+          hour: "numeric",
+          minute: "numeric",
+          second: "numeric",
+        });
+        document.getElementById("timezone").textContent = timezone;
+        document.getElementById("time").textContent = date.toDateString();
+      }
+      setInterval(updateTime, 1000);
+    });
+  }
   closeTimezonePopup();
 }
 
@@ -100,3 +114,5 @@ document.addEventListener("keydown", (event) => {
     closeTimezonePopup();
   }
 });
+
+
