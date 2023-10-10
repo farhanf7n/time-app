@@ -1,4 +1,3 @@
-
 const timezoneSelect = document.getElementById("timezone-select");
 const selectedTimezone = timezoneSelect.value;
 const errorMsg = document.getElementById("error-msg");
@@ -69,21 +68,30 @@ function addSelectedTimezone() {
   timezoneSelect.value = "";
   sameZoneError.classList.add("hidden");
   const buttons = timezonePanel.getElementsByTagName("button");
-  console.log(buttons)
+
+
   for (const button of buttons) {
     button.addEventListener("click", function () {
+      button.classList.add("bg-amber-300");
       function updateTime() {
-        const timezone = button.getElementsByClassName("timezone-name")[0].innerHTML;
-        const date = new Date().toLocaleString("en-US", {
-          timeZone: timezone,
-          hour: "numeric",
-          minute: "numeric",
-          second: "numeric",
-        });
-        document.getElementById("timezone").textContent = timezone;
-        document.getElementById("time").textContent = date.toDateString();
+        const timezoneElements = button.getElementsByClassName("timezone-name");
+        // Check if there is at least one element with the class "timezone-name"
+        if (timezoneElements.length > 0) {
+          const timezone = timezoneElements[0].innerHTML;
+          // get the current time and date in the selected timezone
+          const date = new Date().toLocaleDateString("en-US", { timeZone: timezone });
+          const time = new Date().toLocaleTimeString("en-US", { timeZone: timezone, hour12: false });
+          document.getElementById("timezone").textContent = timezone;
+          document.getElementById("time").textContent = time;
+          // Convert the formatted date string to a Date object
+          const formattedDate = new Date(date);
+          // Format the date in the desired format
+          const formattedDateString = formattedDate.toDateString();
+          document.getElementById("date").textContent = formattedDateString;
+        }
       }
       setInterval(updateTime, 1000);
+      button.classList.remove("bg-amber-300");
     });
   }
   closeTimezonePopup();
@@ -114,5 +122,3 @@ document.addEventListener("keydown", (event) => {
     closeTimezonePopup();
   }
 });
-
-
