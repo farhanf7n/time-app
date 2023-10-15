@@ -68,22 +68,21 @@ function addSelectedTimezone() {
     "</span>";
 
   timezonePanelArray.push(timezoneButton);
-  // console.log(timezoneButton)
   timezoneSelect.value = "";
   sameZoneError.classList.add("hidden");
-  // const buttons = timezonePanel.getElementsByClassName("tabular-nums");
 
   // Get a reference to the container where you want to display the buttons
   const buttonContainer = document.getElementById("buttonContainer");
 
   timezonePanelArray.forEach((button, index) => {
     button.addEventListener("click", function (event) {
+      console.log(event.target)
       // You can access the clicked button using "this"
       // console.log(`Button ${index + 1} clicked!`);
 
       // // You can also access the event target to get the clicked button
       const clickedButton = event.target;
-      console.log(`Button text: ${clickedButton.textContent}`);
+      // console.log(`Button text: ${clickedButton.textContent}`);
 
       // Find the element with the "timezone-name" class inside the clickedButton
       const timezoneNameElement = clickedButton.querySelector(".timezone-name");
@@ -99,7 +98,6 @@ function addSelectedTimezone() {
   timezonePanelArray.map(function (item) {
     return buttonContainer.appendChild(item);
   });
-
   closeTimezonePopup();
 }
 
@@ -127,14 +125,11 @@ document.addEventListener("keydown", (event) => {
     closeTimezonePopup();
   }
 });
-// function getUpdatedValue(e) {
-//   console.log("in function", e.target.value);
-// }
 
 function updateTime() {
   if (currentTimeZone.length > 0) {
     let innerCurrentTimeZonne = currentTimeZone[0];
-    // console.log(innerCurrentTimeZonne);
+
     const date = new Date().toLocaleDateString("en-US", {
       timeZone: innerCurrentTimeZonne,
     });
