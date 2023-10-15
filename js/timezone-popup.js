@@ -5,6 +5,8 @@ const sameZoneError = document.getElementById("same-timezone-error");
 const timezoneSpans = document.getElementsByClassName("timezone-name");
 const popup = document.getElementById("timezone-popup");
 const timezonePanel = document.getElementById("all-timezones");
+const timezonePanelArray = [];
+let currentTimeZone = [];
 
 function loadTimezones() {
   if (timezoneSelect.options.length > 1) {
@@ -64,36 +66,40 @@ function addSelectedTimezone() {
     '</span> <span class="text-gray-400 timezone-name">' +
     selectedTimezone +
     "</span>";
-  timezonePanel.prepend(timezoneButton);
+
+  timezonePanelArray.push(timezoneButton);
+  // console.log(timezoneButton)
   timezoneSelect.value = "";
   sameZoneError.classList.add("hidden");
-  const buttons = timezonePanel.getElementsByTagName("button");
+  // const buttons = timezonePanel.getElementsByClassName("tabular-nums");
 
+  // Get a reference to the container where you want to display the buttons
+  const buttonContainer = document.getElementById("buttonContainer");
 
-  for (const button of buttons) {
-    button.addEventListener("click", function () {
-      button.classList.add("bg-amber-300");
-      function updateTime() {
-        const timezoneElements = button.getElementsByClassName("timezone-name");
-        // Check if there is at least one element with the class "timezone-name"
-        if (timezoneElements.length > 0) {
-          const timezone = timezoneElements[0].innerHTML;
-          // get the current time and date in the selected timezone
-          const date = new Date().toLocaleDateString("en-US", { timeZone: timezone });
-          const time = new Date().toLocaleTimeString("en-US", { timeZone: timezone, hour12: false });
-          document.getElementById("timezone").textContent = timezone;
-          document.getElementById("time").textContent = time;
-          // Convert the formatted date string to a Date object
-          const formattedDate = new Date(date);
-          // Format the date in the desired format
-          const formattedDateString = formattedDate.toDateString();
-          document.getElementById("date").textContent = formattedDateString;
-        }
+  timezonePanelArray.forEach((button, index) => {
+    button.addEventListener("click", function (event) {
+      // You can access the clicked button using "this"
+      // console.log(`Button ${index + 1} clicked!`);
+
+      // // You can also access the event target to get the clicked button
+      const clickedButton = event.target;
+      console.log(`Button text: ${clickedButton.textContent}`);
+
+      // Find the element with the "timezone-name" class inside the clickedButton
+      const timezoneNameElement = clickedButton.querySelector(".timezone-name");
+      if (timezoneNameElement) {
+        currentTimeZone.splice(0, currentTimeZone.length);
+        const selectedTimezoneContext = timezoneNameElement.textContent;
+        currentTimeZone.push(selectedTimezoneContext);
+        updateTime();
       }
-      setInterval(updateTime, 1000);
-      button.classList.remove("bg-amber-300");
     });
-  }
+  });
+
+  timezonePanelArray.map(function (item) {
+    return buttonContainer.appendChild(item);
+  });
+
   closeTimezonePopup();
 }
 
@@ -116,9 +122,34 @@ document
     addSelectedTimezone();
   });
 
-
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeTimezonePopup();
   }
 });
+// function getUpdatedValue(e) {
+//   console.log("in function", e.target.value);
+// }
+
+function updateTime() {
+  if (currentTimeZone.length > 0) {
+    let innerCurrentTimeZonne = currentTimeZone[0];
+    // console.log(innerCurrentTimeZonne);
+    const date = new Date().toLocaleDateString("en-US", {
+      timeZone: innerCurrentTimeZonne,
+    });
+    const time = new Date().toLocaleTimeString("en-US", {
+      timeZone: innerCurrentTimeZonne,
+      hour12: false,
+    });
+
+    document.getElementById("timezone").textContent = innerCurrentTimeZonne;
+    document.getElementById("time").textContent = time;
+
+    const formattedDate = new Date(date);
+    const formattedDateString = formattedDate.toDateString();
+    document.getElementById("date").textContent = formattedDateString;
+  }
+
+  setTimeout(updateTime, 1000);
+}
