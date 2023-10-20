@@ -157,23 +157,31 @@ function updateTime() {
     document.getElementById("date").textContent = formattedDateString;
   }
 
-  setTimeout(updateTime, 1000);
+  setInterval(updateTime, 1000);
 }
 
 window.addEventListener("DOMContentLoaded", function () {
   if (timezonePanelArray.length === 0) {
     // To update time on the main screen
-    function userCurrentTime() {
-      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const date = new Date();
-      const time = date.toLocaleTimeString();
-
-      document.getElementById("timezone").textContent = timezone;
-      document.getElementById("time").textContent = time;
-      document.getElementById("date").textContent = date.toDateString();
-    }
-    setTimeout(userCurrentTime, 1000);
+    userCurrentTime();
   }
+})
+
+function userCurrentTime() {
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const date = new Date();
+  const time = date.toLocaleTimeString();
+
+  document.getElementById("timezone").textContent = timezone;
+  document.getElementById("time").textContent = time;
+  document.getElementById("date").textContent = date.toDateString();
+}
+const currentTimeInterval = setInterval(userCurrentTime, 1000);
+
+timezonePanelArray.forEach((button) => {
+  button.addEventListener("click", function () {
+    clearInterval(currentTimeInterval);
+  })
 })
 
 
