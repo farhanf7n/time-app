@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/global.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Timezone Popup -->
@@ -29,8 +30,8 @@
         </p>
         <select
           id="timezone-select"
-          name="#"
-          class="border w-full block p-2 rounded-md mb-2"
+          name="state"
+          class="border w-full block p-2 rounded-md mb-2 se-select2 w-100"
         >
           <option value="">Select Timezone</option>
         </select>
@@ -42,7 +43,7 @@
         </p>
         <button
           id="add-timezone-popup-btn"
-          class="bg-gray-700 hover:bg-black rounded-md block w-full text-white p-2"
+          class="bg-gray-700 hover:bg-black rounded-md block w-full text-white p-2 mt-3"
         >
           Add Timezone
         </button>
@@ -74,7 +75,11 @@
         </button>
       </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="js/time.js"></script>
     <script src="js/timezone-popup.js"></script>
+    
   </body>
 </html>

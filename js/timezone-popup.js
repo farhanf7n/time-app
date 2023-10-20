@@ -73,34 +73,41 @@ function addSelectedTimezone() {
 
   // Get a reference to the container where you want to display the buttons
   const buttonContainer = document.getElementById("buttonContainer");
-
-  timezonePanelArray.forEach((button, index) => {
+  timezonePanelArray.forEach((button) => {
     button.addEventListener("click", function (event) {
-      console.log(event.target)
-      // You can access the clicked button using "this"
-      // console.log(`Button ${index + 1} clicked!`);
-
-      // // You can also access the event target to get the clicked button
-      const clickedButton = event.target;
-      // console.log(`Button text: ${clickedButton.textContent}`);
-
-      // Find the element with the "timezone-name" class inside the clickedButton
-      const timezoneNameElement = clickedButton.querySelector(".timezone-name");
+      const targetBtn = event.currentTarget;
+      // targetBtn.classList.add("bg-amber-300");
+      const timezoneNameElement = targetBtn.querySelector(".timezone-name");
       if (timezoneNameElement) {
         currentTimeZone.splice(0, currentTimeZone.length);
         const selectedTimezoneContext = timezoneNameElement.textContent;
         currentTimeZone.push(selectedTimezoneContext);
         updateTime();
       }
+      // Add bg-amber-300 class to clicked button
+      targetBtn.classList.add("bg-amber-300");
+
+      // Remove bg-amber-300 class from other buttons
+      timezonePanelArray.forEach((otherButton) => {
+        if (otherButton !== targetBtn) {
+          otherButton.classList.remove("bg-amber-300");
+        }
+      });
+    });
+
+
+    timezonePanelArray.filter(Boolean).map(function (item) {
+      return buttonContainer.appendChild(item);
     });
   });
 
-  timezonePanelArray.map(function (item) {
-    return buttonContainer.appendChild(item);
-  });
+  // timezonePanelArray.map(function (item) {
+  //   return buttonContainer.appendChild(item);
+  // });
   closeTimezonePopup();
 }
 
+// Add timezone button in the right panel
 document
   .getElementById("add-timezone-btn")
   .addEventListener("click", function () {
@@ -108,24 +115,28 @@ document
     loadTimezones();
   });
 
+// Cross button for popup
 document
   .getElementById("close-popup-btn")
   .addEventListener("click", function () {
     closeTimezonePopup();
   });
 
+// Pop-ups add timezone button
 document
   .getElementById("add-timezone-popup-btn")
   .addEventListener("click", function () {
     addSelectedTimezone();
   });
 
+// Checks if the user pressed Esc key
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeTimezonePopup();
   }
 });
 
+// This function update the time in main section
 function updateTime() {
   if (currentTimeZone.length > 0) {
     let innerCurrentTimeZonne = currentTimeZone[0];
@@ -148,3 +159,24 @@ function updateTime() {
 
   setTimeout(updateTime, 1000);
 }
+
+window.addEventListener("DOMContentLoaded", function () {
+  if (timezonePanelArray.length === 0) {
+    // To update time on the main screen
+    function userCurrentTime() {
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const date = new Date();
+      const time = date.toLocaleTimeString();
+
+      document.getElementById("timezone").textContent = timezone;
+      document.getElementById("time").textContent = time;
+      document.getElementById("date").textContent = date.toDateString();
+    }
+    setTimeout(userCurrentTime, 1000);
+  }
+})
+
+
+$(document).ready(function () {
+  $('.se-select2').select2();
+});
