@@ -75,8 +75,10 @@ function addSelectedTimezone() {
   const buttonContainer = document.getElementById("buttonContainer");
   timezonePanelArray.forEach((button) => {
     button.addEventListener("click", function (event) {
+      // To clear the interval for currentTime
+      setTimeout(() => { clearInterval(currentTimeInterval), 1000 });
+      clearInterval(currentTimeInterval);
       const targetBtn = event.currentTarget;
-      // targetBtn.classList.add("bg-amber-300");
       const timezoneNameElement = targetBtn.querySelector(".timezone-name");
       if (timezoneNameElement) {
         currentTimeZone.splice(0, currentTimeZone.length);
@@ -178,11 +180,14 @@ function userCurrentTime() {
 }
 const currentTimeInterval = setInterval(userCurrentTime, 1000);
 
-timezonePanelArray.forEach((button) => {
-  button.addEventListener("click", function () {
-    clearInterval(currentTimeInterval);
-  })
-})
+// timezonePanelArray.forEach((button) => {
+//   button.addEventListener("click", function () {
+//     console.log("Waiting");
+//     setTimeout(() => { clearInterval(currentTimeInterval), 1000 });
+//     console.log("Done.")
+//     // clearInterval(currentTimeInterval);
+//   })
+// })
 
 
 $(document).ready(function () {
