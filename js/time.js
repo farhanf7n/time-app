@@ -8,21 +8,22 @@ const timezonePanel = document.getElementById("all-timezones");
 const timezonePanelArray = [];
 let currentTimeZone = [];
 
-
+// Loads all the timezones in the select dropdown
 function loadTimezones() {
   if (timezoneSelect.options.length > 1) {
     return;
   }
-
   for (const timeZone of Intl.supportedValuesOf("timeZone")) {
     timezoneSelect.options.add(new Option(timeZone));
   }
 }
 
+// Shows the popup
 function showTimezonePopup() {
   popup.classList.remove("hidden");
 }
 
+// Closes the popup
 function closeTimezonePopup() {
   popup.classList.add("hidden");
   timezoneSelect.value = "";
@@ -99,7 +100,6 @@ function addSelectedTimezone() {
       });
     });
 
-
     timezonePanelArray.filter(Boolean).map(function (item) {
       return buttonContainer.appendChild(item);
     });
@@ -122,11 +122,28 @@ document
     closeTimezonePopup();
   });
 
-// Pop-ups add timezone button
+// add timezone button of Pop-up
 document
   .getElementById("add-timezone-popup-btn")
   .addEventListener("click", function () {
     addSelectedTimezone();
+  });
+
+// Delete button functionality
+document
+  .getElementById("delete-btn")
+  .addEventListener("click", function () {
+    const leftPanelTimezone = document.getElementById("timezone");
+    for (const span of timezoneSpans) {
+    if (span.innerHTML === leftPanelTimezone.textContent) {
+        span.parentElement.remove();
+        // find the index of the button in the array of timezonePanelArray
+        const index = timezonePanelArray.findIndex(
+          (button) => button.textContent === span.parentElement.textContent
+        );
+        timezonePanelArray.splice(index, 1);
+      }
+  }
   });
 
 // Checks if the user pressed Esc key
@@ -208,15 +225,10 @@ function madeCurrentTimeButton() {
   timezonePanelArray.filter(Boolean).map(function (item) {
     return buttonContainer.appendChild(item);
   });
-  // Here
-  console.log("timezoneSpans", timezoneSpans)
   for (const span of timezoneSpans) {
     if (span.innerHTML === timezoneName) {
       const buttonsInPanel = document.querySelectorAll("#buttonContainer timezoneName");
-      // console.log(buttonsInPanel)
-      console.log("Yup, it is in the list.");
-      // console.log(timezonePanelArray)
-      // console.log("class added.")
+      // console.log("Yup, it is in the list.");
       // span.parentElement.classList.add("bg-amber-300");
     }
   }
