@@ -71,8 +71,18 @@ function addSelectedTimezone() {
     "</span>";
 
   timezonePanelArray.push(timezoneButton);
-  timezoneSelect.value = "";
   sameZoneError.classList.add("hidden");
+  // Start running the clock in the main section after adding the selected timezone
+  setTimeout(() => { clearInterval(currentTimeInterval), 1000 });
+  clearInterval(currentTimeInterval);
+
+  currentTimeZone.splice(0, currentTimeZone.length);
+  currentTimeZone.push(selectedTimezone);
+  updateTime();
+
+  timezoneSelect.value = "";
+  console.log(timezonePanelArray);
+
 
   // Get a reference to the container where you want to display the buttons
   const buttonContainer = document.getElementById("buttonContainer");
@@ -83,6 +93,7 @@ function addSelectedTimezone() {
       clearInterval(currentTimeInterval);
       const targetBtn = event.currentTarget;
       const timezoneNameElement = targetBtn.querySelector(".timezone-name");
+      // console.log(timezoneNameElement.textContent)
       if (timezoneNameElement) {
         currentTimeZone.splice(0, currentTimeZone.length);
         const selectedTimezoneContext = timezoneNameElement.textContent;
@@ -103,6 +114,7 @@ function addSelectedTimezone() {
     timezonePanelArray.filter(Boolean).map(function (item) {
       return buttonContainer.appendChild(item);
     });
+    // To store the timezonePanelArray in localStorage
   });
   closeTimezonePopup();
 }
@@ -135,15 +147,14 @@ document
   .addEventListener("click", function () {
     const leftPanelTimezone = document.getElementById("timezone");
     for (const span of timezoneSpans) {
-    if (span.innerHTML === leftPanelTimezone.textContent) {
+      if (span.innerHTML === leftPanelTimezone.textContent) {
         span.parentElement.remove();
-        // find the index of the button in the array of timezonePanelArray
         const index = timezonePanelArray.findIndex(
           (button) => button.textContent === span.parentElement.textContent
         );
         timezonePanelArray.splice(index, 1);
       }
-  }
+    }
   });
 
 // Checks if the user pressed Esc key
@@ -178,6 +189,9 @@ function updateTime() {
 }
 
 window.addEventListener("DOMContentLoaded", function () {
+  // To store timezonePanelArray in localStorage
+
+
   if (timezonePanelArray.length === 0) {
     // To update user's current time on the main screen
     userCurrentTime();
@@ -225,6 +239,7 @@ function madeCurrentTimeButton() {
   timezonePanelArray.filter(Boolean).map(function (item) {
     return buttonContainer.appendChild(item);
   });
+  // console.log(timezoneSpans)
   for (const span of timezoneSpans) {
     if (span.innerHTML === timezoneName) {
       const buttonsInPanel = document.querySelectorAll("#buttonContainer timezoneName");
