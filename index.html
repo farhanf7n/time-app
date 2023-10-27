@@ -26,7 +26,7 @@
           <span id="close-popup-btn"
             class="bg-gray-700 px-3 cursor-pointer hover:bg-black rounded-md block text-white p-2">&times;</span>
         </div>
-        <p class="text-gray-400 mb-4">
+        <p class="text-gray-500 mb-4">
           Pick a timezone below to add to the list
         </p>
         <select id="timezone-select" name="state" class="border w-full block p-2 rounded-md mb-2 se-select2 w-100">
@@ -61,7 +61,7 @@
             </span>
           </p> -->
           <div class="relative flex items-center">
-            <p class="text-2xl text-gray-400"><span id="date"></span></p>
+            <p class="text-2xl text-gray-500"><span id="date"></span></p>
             <button id="delete-btn" class="absolute right-[-60px] text-lg px-3 py-1 rounded ease-in-out duration-300 cursor-pointer  hover:bg-amber-300">🗑️</button>
           </div>
         </div>
@@ -69,11 +69,13 @@
       <div id="all-timezones" class="w-[350px] border-l border-left-black">
         <div id="buttonContainer"></div>
         <button id="add-timezone-btn"
-          class="p-3 text-center border-b text-gray-400 hover:text-black hover:bg-gray-100 block w-full focus:outline-none focus-visible:outline-none">
+          class="p-3 text-center border-b text-gray-500 hover:text-black hover:bg-gray-100 block w-full focus:outline-none focus-visible:outline-none">
           + Add Timezone
         </button>
       </div>
     </div>
+
+    <div id="toastbox" class="absolute flex items-end flex-col bottom-[38px] left-[40px] z-50 overflow-hidden p-5"></div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
