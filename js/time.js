@@ -6,8 +6,36 @@ const timezoneSpans = document.getElementsByClassName("timezone-name");
 const popup = document.getElementById("timezone-popup");
 const timezonePanel = document.getElementById("all-timezones");
 const buttonContainer = document.getElementById("buttonContainer");
+let toastBox = document.getElementById("toastbox");
 const timezonePanelArray = [];
 let currentTimeZone = [];
+
+// Toast Messages
+let addedTimezoneMsg = "<i class='fa-solid fa-square-check'></i> Added timezone button";
+let cantDeleteMsg = "<i class='fa-solid fa-square-xmark'></i> Can't delete, cause list has only one timezone.";
+let deletedTimezoneMsg = "<i class='fa-solid fa-dumpster-fire'></i> Deleted the timezone";
+
+// Toast Function
+function showToast(activity) {
+  let toast = document.createElement("div");
+  toast.classList.add("toast", "relative", "gap-2", "text-base", "font-normal", "flex", "items-center", "justify-center", "w-auto", "p-4", "text-white", "bg-white", "rounded-lg", "shadow-md", "my-2");
+  toast.innerHTML = activity;
+  toastBox.appendChild(toast);
+
+  if (activity.includes("Added")) {
+    toast.classList.add('bg-green-600');
+  }
+  if (activity.includes("Can't delete")) {
+    toast.classList.add('bg-red-800');
+  }
+  if (activity.includes("Deleted")) {
+    toast.classList.add('bg-blue-500');
+  }
+
+  setTimeout(() => {
+    toast.remove();
+  }, 3000)
+}
 
 // Loads all the timezones in the select dropdown
 function loadTimezones() {
@@ -34,7 +62,7 @@ function closeTimezonePopup() {
 // Adds selected timezone to the right button container
 function addSelectedTimezone() {
   const selectedTimezone = timezoneSelect.value;
-  
+
   if (!selectedTimezone) {
     errorMsg.classList.remove("hidden");
     return;
@@ -74,19 +102,9 @@ function addSelectedTimezone() {
   timezonePanelArray.push(timezoneButton);
   sameZoneError.classList.add("hidden");
 
-  // Start running the clock in the main section after adding the selected timezone
-  // setTimeout(() => { clearInterval(currentTimeInterval), 1000 });
-  // clearInterval(currentTimeInterval);
-
-  // currentTimeZone.splice(0, currentTimeZone.length);
-  // currentTimeZone.push(selectedTimezone);
-  // updateTime();
-
   loadElementTime(timezoneButton);
 
-
   timezoneSelect.value = "";
-
 
   timezonePanelArray.forEach((button) => {
     button.addEventListener("click", function (event) {
@@ -103,7 +121,7 @@ function addSelectedTimezone() {
     // To store the timezonePanelArray in localStorage
   });
 
-  console.log(timezonePanelArray);
+  showToast(addedTimezoneMsg);
   closeTimezonePopup();
 }
 
@@ -157,22 +175,26 @@ document
   .getElementById("delete-btn")
   .addEventListener("click", function () {
     const leftPanelTimezone = document.getElementById("timezone");
-    for (const span of timezoneSpans) {
-      if (span.innerHTML === leftPanelTimezone.textContent) {
-        const index = timezonePanelArray.findIndex(
-          (button) => button.textContent === span.parentElement.textContent
-        );
-        if (index === 0) {
-          timezonePanelArray[index].classList.add("bg-amber-300");
-          timezonePanelArray[index].click();
-        } else if (index > 0) {
+    if (timezonePanelArray.length > 1) {
+      for (const span of timezoneSpans) {
+        if (span.innerHTML === leftPanelTimezone.textContent) {
+          const index = timezonePanelArray.findIndex(
+            (button) => button.textContent === span.parentElement.textContent
+          );
+          if (index === 0) {
+            timezonePanelArray[index + 1].classList.add("bg-amber-300");
+            timezonePanelArray[index + 1].click();
+          } else if (index > 0) {
+            timezonePanelArray[index - 1].classList.add("bg-amber-300");
+            timezonePanelArray[index - 1].click();
+          }
           span.parentElement.remove();
           timezonePanelArray.splice(index, 1);
-          timezonePanelArray[index - 1].classList.add("bg-amber-300");
-          timezonePanelArray[index - 1].click();
+          showToast(deletedTimezoneMsg);
         }
-
       }
+    } else {
+      showToast(cantDeleteMsg);
     }
   });
 
@@ -246,12 +268,7 @@ function makeCurrentTimeButton() {
   timezoneButton.setAttribute(
     "class", "flex justify-between py-3 px-5 text-left tabular-nums border-b ease-in-out hover:bg-amber-300 block w-full bg-gray-100"
   );
-  timezoneButton.innerHTML =
-    '<span class="font-semibold">' +
-    currentTime +
-    '</span> <span class="text-gray-500 timezone-name">' +
-    timezoneName +
-    "</span>";
+  timezoneButton.innerHTML = '<span class="font-semibold">' + currentTime + '</span> <span class="text-gray-500 timezone-name">' + timezoneName + "</span>";
 
   timezonePanelArray.push(timezoneButton);
 
