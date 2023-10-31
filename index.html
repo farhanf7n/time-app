@@ -1,37 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>time.fyi — All things time related at your fingertips.</title>
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Reset CSS -->
     <link rel="stylesheet" href="css/reset.css" />
+    <!-- Global CSS -->
     <link rel="stylesheet" href="css/global.css" />
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/09d48683e2.js" crossorigin="anonymous"></script>
+    <!-- Select CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/09d48683e2.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Fav icon -->
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
   </head>
 
   <body>
     <!-- Timezone Popup -->
-    <div id="timezone-popup"
-      class="fixed hidden top-0 left-0 bottom-0 right-0 bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center">
-      <div id="popup-inner" class="p-5 min-w-[500px] bg-white rounded-md">
+    <div
+      id="timezone-popup"
+      class="fixed hidden top-0 left-0 bottom-0 right-0 bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center"
+    >
+      <div id="popup-inner" class="p-5 min-w-[500px] bg-white rounded-md bg-">
         <div class="flex items-center justify-between">
           <h2 class="font-semibold text-2xl mb-0.5">Add Timezone</h2>
-          <span id="close-popup-btn"
-            class="bg-gray-700 px-3 cursor-pointer hover:bg-black rounded-md block text-white p-2">&times;</span>
+          <span
+            id="close-popup-btn"
+            class="bg-gray-700 px-3 cursor-pointer hover:bg-black rounded-md block text-white p-2"
+            >&times;</span
+          >
         </div>
         <p class="text-gray-500 mb-4">
           Pick a timezone below to add to the list
         </p>
-        <select id="timezone-select" name="state" class="border w-full block p-2 rounded-md mb-2 se-select2 w-100">
-          <option value="" >Select Timezone</option>
+        <select
+          id="timezone-select"
+          name="state"
+          class="border w-full block p-2 rounded-md mb-2 se-select2 w-100"
+        >
+          <option value="">Select Timezone</option>
         </select>
         <p id="error-msg" class="text-red-500 mb-4 hidden">
           Pick a timezone please!
@@ -39,8 +63,10 @@
         <p id="same-timezone-error" class="text-red-500 mb-4 hidden">
           Can't add same timezone twice!
         </p>
-        <button id="add-timezone-popup-btn"
-          class="bg-gray-700 hover:bg-black rounded-md block w-full text-white p-2 mt-3">
+        <button
+          id="add-timezone-popup-btn"
+          class="bg-gray-700 hover:bg-black rounded-md block w-full text-white p-2 mt-3"
+        >
           Add Timezone
         </button>
       </div>
@@ -53,35 +79,44 @@
           <p class="text-lg mb-2 text-gray-500"><span id="timezone"></span></p>
           <p class="text-9xl mb-2">
             <span id="time" class="font-extrabold tabular-nums">
-              <span class="animate text-gray-300 animate-pulse">Loading ...</span>
+              <span class="animate text-gray-300 animate-pulse"
+                >Loading ...</span
+              >
             </span>
           </p>
-          <!-- <p class="text-9xl mb-2">
-            <span id="time" class="font-extrabold tabular-nums">
-              <span class="animate text-gray-300 animate-pulse">Select any timezone from the right panel ...</span>
-            </span>
-          </p> -->
           <div class="relative flex items-center">
             <p class="text-2xl text-gray-500"><span id="date"></span></p>
-            <button id="delete-btn" class="absolute right-[-60px] text-lg px-3 py-1 rounded ease-in-out duration-300 cursor-pointer  hover:bg-amber-300">🗑️</button>
+            <button
+              id="delete-btn"
+              class="absolute right-[-60px] text-lg px-3 py-1 rounded ease-in-out duration-300 cursor-pointer hover:bg-amber-300"
+            >
+              🗑️
+            </button>
           </div>
         </div>
       </div>
       <div id="all-timezones" class="w-[350px] border-l border-left-black">
         <div id="buttonContainer"></div>
-        <button id="add-timezone-btn"
-          class="p-3 text-center border-b text-gray-500 hover:text-black hover:bg-gray-100 block w-full focus:outline-none focus-visible:outline-none">
+        <button
+          id="add-timezone-btn"
+          class="p-3 text-center border-b text-gray-500 hover:text-black hover:bg-gray-100 block w-full focus:outline-none focus-visible:outline-none"
+        >
           + Add Timezone
         </button>
       </div>
     </div>
 
-    <div id="toastbox" class="absolute flex items-start flex-col bottom-[38px] left-[40px] z-50 overflow-hidden"></div>
+    <div
+      id="toastbox"
+      class="absolute flex items-start flex-col bottom-[38px] left-[40px] z-50 overflow-hidden"
+    ></div>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="js/time.js"></script>
   </body>
-
 </html>
