@@ -216,12 +216,20 @@ document.getElementById("delete-btn").addEventListener("click", function () {
         }
         span.parentElement.remove();
         timezonePanelArray.splice(index, 1);
+
         showToast(deletedTimezoneMsg);
 
-        // Update localStorage after deleting the timezonex
-        localStorageTimezone.push(selectedTimezone);
-        let convertedString = JSON.stringify(localStorageTimezone);
-        localStorage.setItem("localStorageTimezone", convertedString);
+        // Update localStorage after deleting the timezone
+        const selectedTimezone = span.innerHTML;
+        const localStorageTimezone = JSON.parse(
+          localStorage.getItem("localStorageTimezone")
+        );
+        const indexToDelete = localStorageTimezone.indexOf(selectedTimezone);
+        if (indexToDelete > -1) {
+          localStorageTimezone.splice(indexToDelete, 1);
+          let convertedString = JSON.stringify(localStorageTimezone);
+          localStorage.setItem("localStorageTimezone", convertedString);
+        }
       }
     }
   } else {
