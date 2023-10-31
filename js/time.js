@@ -9,32 +9,52 @@ const buttonContainer = document.getElementById("buttonContainer");
 let toastBox = document.getElementById("toastbox");
 const timezonePanelArray = [];
 let currentTimeZone = [];
+let localStorageTimezone = [];
 
 // Toast Messages
-let addedTimezoneMsg = "<i class='fa-solid fa-square-check'></i> Added timezone button";
-let cantDeleteMsg = "<i class='fa-solid fa-square-xmark'></i> Can't delete, cause list has only one timezone.";
-let deletedTimezoneMsg = "<i class='fa-solid fa-dumpster-fire'></i> Deleted the timezone";
+let addedTimezoneMsg =
+  "<i class='fa-solid fa-square-check'></i> Added timezone button";
+let cantDeleteMsg =
+  "<i class='fa-solid fa-square-xmark'></i> Can't delete, cause list has only one timezone.";
+let deletedTimezoneMsg =
+  "<i class='fa-solid fa-dumpster-fire'></i> Deleted the timezone";
 
 // Toast Function
 function showToast(activity) {
   let toast = document.createElement("div");
-  toast.classList.add("toast", "relative", "gap-2", "text-base", "font-normal", "flex", "items-center", "justify-center", "w-auto", "p-4", "text-white", "bg-white", "rounded-lg", "shadow-md", "my-2");
+  toast.classList.add(
+    "toast",
+    "relative",
+    "gap-2",
+    "text-base",
+    "font-normal",
+    "flex",
+    "items-center",
+    "justify-center",
+    "w-auto",
+    "p-4",
+    "text-white",
+    "bg-white",
+    "rounded-lg",
+    "shadow-md",
+    "my-2"
+  );
   toast.innerHTML = activity;
   toastBox.appendChild(toast);
 
   if (activity.includes("Added")) {
-    toast.classList.add('bg-green-600');
+    toast.classList.add("bg-green-600");
   }
   if (activity.includes("Can't delete")) {
-    toast.classList.add('bg-red-800');
+    toast.classList.add("bg-red-800");
   }
   if (activity.includes("Deleted")) {
-    toast.classList.add('bg-blue-500');
+    toast.classList.add("bg-blue-500");
   }
 
   setTimeout(() => {
     toast.remove();
-  }, 3000)
+  }, 3000);
 }
 
 // Loads all the timezones in the select dropdown
@@ -102,6 +122,11 @@ function addSelectedTimezone() {
   timezonePanelArray.push(timezoneButton);
   sameZoneError.classList.add("hidden");
 
+  // Store the timezone in localStorage
+  localStorageTimezone.push(selectedTimezone);
+  let convertedString = JSON.stringify(localStorageTimezone);
+  localStorage.setItem("localStorageTimezone", convertedString);
+
   loadElementTime(timezoneButton);
 
   timezoneSelect.value = "";
@@ -109,7 +134,9 @@ function addSelectedTimezone() {
   timezonePanelArray.forEach((button) => {
     button.addEventListener("click", function (event) {
       // To clear the interval for currentTime
-      setTimeout(() => { clearInterval(currentTimeInterval), 1000 });
+      setTimeout(() => {
+        clearInterval(currentTimeInterval), 1000;
+      });
       clearInterval(currentTimeInterval);
       const targetBtn = event.currentTarget;
       loadElementTime(targetBtn);
@@ -118,7 +145,6 @@ function addSelectedTimezone() {
     timezonePanelArray.filter(Boolean).map(function (item) {
       return buttonContainer.appendChild(item);
     });
-    // To store the timezonePanelArray in localStorage
   });
 
   showToast(addedTimezoneMsg);
@@ -128,7 +154,9 @@ function addSelectedTimezone() {
 function loadElementTime(targetBtn) {
   const timezoneNameElement = targetBtn.querySelector(".timezone-name");
   if (timezoneNameElement) {
-    setTimeout(() => { clearInterval(currentTimeInterval), 1000 });
+    setTimeout(() => {
+      clearInterval(currentTimeInterval), 1000;
+    });
     clearInterval(currentTimeInterval);
 
     currentTimeZone.splice(0, currentTimeZone.length);
@@ -171,32 +199,35 @@ document
   });
 
 // Delete button functionality
-document
-  .getElementById("delete-btn")
-  .addEventListener("click", function () {
-    const leftPanelTimezone = document.getElementById("timezone");
-    if (timezonePanelArray.length > 1) {
-      for (const span of timezoneSpans) {
-        if (span.innerHTML === leftPanelTimezone.textContent) {
-          const index = timezonePanelArray.findIndex(
-            (button) => button.textContent === span.parentElement.textContent
-          );
-          if (index === 0) {
-            timezonePanelArray[index + 1].classList.add("bg-amber-300");
-            timezonePanelArray[index + 1].click();
-          } else if (index > 0) {
-            timezonePanelArray[index - 1].classList.add("bg-amber-300");
-            timezonePanelArray[index - 1].click();
-          }
-          span.parentElement.remove();
-          timezonePanelArray.splice(index, 1);
-          showToast(deletedTimezoneMsg);
+document.getElementById("delete-btn").addEventListener("click", function () {
+  const leftPanelTimezone = document.getElementById("timezone");
+  if (timezonePanelArray.length > 1) {
+    for (const span of timezoneSpans) {
+      if (span.innerHTML === leftPanelTimezone.textContent) {
+        const index = timezonePanelArray.findIndex(
+          (button) => button.textContent === span.parentElement.textContent
+        );
+        if (index === 0) {
+          timezonePanelArray[index + 1].classList.add("bg-amber-300");
+          timezonePanelArray[index + 1].click();
+        } else if (index > 0) {
+          timezonePanelArray[index - 1].classList.add("bg-amber-300");
+          timezonePanelArray[index - 1].click();
         }
+        span.parentElement.remove();
+        timezonePanelArray.splice(index, 1);
+        showToast(deletedTimezoneMsg);
+
+        // Update localStorage after deleting the timezonex
+        localStorageTimezone.push(selectedTimezone);
+        let convertedString = JSON.stringify(localStorageTimezone);
+        localStorage.setItem("localStorageTimezone", convertedString);
       }
-    } else {
-      showToast(cantDeleteMsg);
     }
-  });
+  } else {
+    showToast(cantDeleteMsg);
+  }
+});
 
 // Checks if the user pressed Escape key
 document.addEventListener("keydown", (event) => {
@@ -229,17 +260,72 @@ function updateTime() {
   setInterval(updateTime, 1000);
 }
 
+// This function populates the timezone panel with localstorage data
+function populateTimezonePanel(convertedArray) {
+  convertedArray.forEach((timezone) => {
+    const currentTime = new Date().toLocaleString("en-US", {
+      timeZone: timezone,
+      hour: "numeric",
+      minute: "numeric",
+      hour12: false,
+    });
+
+    const timezoneButton = document.createElement("button");
+    timezoneButton.setAttribute(
+      "class",
+      "flex justify-between py-3 px-5 text-left tabular-nums border-b ease-in-out hover:bg-amber-300 block w-full bg-gray-100"
+    );
+    timezoneButton.innerHTML =
+      '<span class="font-semibold">' +
+      currentTime +
+      '</span> <span class="text-gray-500 timezone-name">' +
+      timezone +
+      "</span>";
+    timezonePanelArray.push(timezoneButton);
+
+    timezonePanelArray.filter(Boolean).map(function (item) {
+      return buttonContainer.appendChild(item);
+    });
+
+    timezonePanelArray.forEach((button) => {
+      button.addEventListener("click", function (event) {
+        // To clear the interval for currentTime
+        setTimeout(() => {
+          clearInterval(currentTimeInterval), 1000;
+        });
+        clearInterval(currentTimeInterval);
+        const targetBtn = event.currentTarget;
+        loadElementTime(targetBtn);
+      });
+
+      timezonePanelArray.filter(Boolean).map(function (item) {
+        return buttonContainer.appendChild(item);
+      });
+
+      // const randomIndex = getRandomIndex();
+      // timezonePanelArray[randomIndex].click();
+      // function getRandomIndex() {
+      //   return Math.floor(Math.random() * convertedArray.length);
+      // }
+    });
+  });
+}
+
 // DOMContentLoaded event
 window.addEventListener("DOMContentLoaded", function () {
-  // To store timezonePanelArray in localStorage
-  // Store the timezonePanelArray in localStorage and then when the page is refreshed, load the timezonePanelArray from localStorage
-
-  if (timezonePanelArray.length === 0) {
+  // To get the timezonePanelArray from localStorage and display it in the button container
+  let fetchedString = localStorage.getItem("localStorageTimezone");
+  let convertedArray = JSON.parse(fetchedString);
+  if (convertedArray === null) {
     // To update user's current time on the main screen
+    console.log("Nothing in the localstorage");
     userCurrentTime();
     makeCurrentTimeButton();
+  } else {
+    console.log("Timezone in the localstorage");
+    populateTimezonePanel(convertedArray);
   }
-})
+});
 
 // To update user's current time on the main screen
 function userCurrentTime() {
@@ -266,9 +352,15 @@ function makeCurrentTimeButton() {
 
   const timezoneButton = document.createElement("button");
   timezoneButton.setAttribute(
-    "class", "flex justify-between py-3 px-5 text-left tabular-nums border-b ease-in-out hover:bg-amber-300 block w-full bg-gray-100"
+    "class",
+    "flex justify-between py-3 px-5 text-left tabular-nums border-b ease-in-out hover:bg-amber-300 block w-full bg-gray-100"
   );
-  timezoneButton.innerHTML = '<span class="font-semibold">' + currentTime + '</span> <span class="text-gray-500 timezone-name">' + timezoneName + "</span>";
+  timezoneButton.innerHTML =
+    '<span class="font-semibold">' +
+    currentTime +
+    '</span> <span class="text-gray-500 timezone-name">' +
+    timezoneName +
+    "</span>";
 
   timezonePanelArray.push(timezoneButton);
 
@@ -278,5 +370,5 @@ function makeCurrentTimeButton() {
 }
 
 $(document).ready(function () {
-  $('.se-select2').select2();
+  $(".se-select2").select2();
 });
