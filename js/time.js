@@ -75,8 +75,9 @@ function showTimezonePopup() {
 // Closes the popup
 function closeTimezonePopup() {
   popup.classList.add("hidden");
-  timezoneSelect.value = "";
+  $("#timezone-select").val(null).trigger("change");
   errorMsg.classList.add("hidden");
+  sameZoneError.classList.add("hidden");
 }
 
 // Adds selected timezone to the right button container
@@ -129,7 +130,7 @@ function addSelectedTimezone() {
 
   loadElementTime(timezoneButton);
 
-  timezoneSelect.value = "";
+  $("#timezone-select").val(null).trigger("change");
 
   timezonePanelArray.forEach((button) => {
     button.addEventListener("click", function (event) {
