@@ -271,6 +271,14 @@ function updateTime() {
 
 // This function populates the timezone panel with localstorage data
 function populateTimezonePanel(convertedArray) {
+  // To clear the previous interval for currentTime
+  setTimeout(() => {
+    clearInterval(currentTimeInterval), 1000;
+  });
+  clearInterval(currentTimeInterval);
+
+  currentTimeZone.push(convertedArray[0]);
+  updateTime();
   convertedArray.forEach((timezone) => {
     const currentTime = new Date().toLocaleString("en-US", {
       timeZone: timezone,
@@ -310,12 +318,6 @@ function populateTimezonePanel(convertedArray) {
       timezonePanelArray.filter(Boolean).map(function (item) {
         return buttonContainer.appendChild(item);
       });
-
-      // const randomIndex = getRandomIndex();
-      // timezonePanelArray[randomIndex].click();
-      // function getRandomIndex() {
-      //   return Math.floor(Math.random() * convertedArray.length);
-      // }
     });
   });
 }
@@ -325,13 +327,12 @@ window.addEventListener("DOMContentLoaded", function () {
   // To get the timezonePanelArray from localStorage and display it in the button container
   let fetchedString = localStorage.getItem("localStorageTimezone");
   let convertedArray = JSON.parse(fetchedString);
-  if (convertedArray === null) {
+  if (convertedArray === null || convertedArray.length === 0) {
     // To update user's current time on the main screen
-    console.log("Nothing in the localstorage");
+    localStorage.clear();
     userCurrentTime();
     makeCurrentTimeButton();
   } else {
-    console.log("Timezone in the localstorage");
     populateTimezonePanel(convertedArray);
   }
 });
