@@ -3,5 +3,9 @@
 }
 
 .select2-container {
-  min-width: 460px;
+  min-width: 100%;
+}
+span.select2.select2-container.select2-container--default.select2-container--below.select2-container--open {
+  width: 100% !important;
+  min-width: 100% !important;
 }

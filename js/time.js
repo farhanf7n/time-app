@@ -24,9 +24,10 @@ function showToast(activity) {
   let toast = document.createElement("div");
   toast.classList.add(
     "toast",
+    "sm-text-base",
     "relative",
     "gap-2",
-    "text-base",
+    "text-sm",
     "font-normal",
     "flex",
     "items-center",
