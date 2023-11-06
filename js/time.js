@@ -30,6 +30,7 @@ function showToast(activity) {
   let toast = document.createElement("div");
   toast.classList.add(
     "toast",
+    "someToastAnimation",
     "sm-text-base",
     "relative",
     "gap-2",
@@ -120,11 +121,12 @@ function addSelectedTimezone() {
 
   // Add the new timezone to timezones array and populate the timezone panel
   currentTimezones.push(selectedTimezone);
-  populateTimezonePanel(currentTimezones)
+  populateTimezonePanel(currentTimezones);
 }
 
 function loadElementTime(targetBtn) {
-  const previouslySelectedTimezone = document.querySelector('.current-timezone');
+  const previouslySelectedTimezone =
+    document.querySelector(".current-timezone");
   if (previouslySelectedTimezone) {
     previouslySelectedTimezone.classList.remove("current-timezone");
   }
@@ -214,7 +216,7 @@ function populateTimezonePanel(timezonesList, timezoneToSelect) {
   // @TODO: Select the timezoneToSelect if it is passed
 
   // Remove all the existing timezones
-  buttonContainer.innerHTML = '';
+  buttonContainer.innerHTML = "";
 
   let lastTimezoneButton = null;
 
@@ -249,7 +251,7 @@ function populateTimezonePanel(timezonesList, timezoneToSelect) {
     lastTimezoneButton = timezoneButton;
   });
 
-  lastTimezoneButton.classList.add('current-timezone');
+  lastTimezoneButton.classList.add("current-timezone");
   currentTimeZone = timezonesList[timezonesList.length - 1];
   loadCurrentTimezoneTime();
 

@@ -23,3 +23,18 @@ span.select2.select2-container.select2-container--default.select2-container--bel
   background: #000000 !important;
   color: white !important;
 }
+
+.someToastAnimation {
+  animation: someToastAnimation 0.2s ease-in-out;
+}
+
+@keyframes someToastAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}

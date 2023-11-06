@@ -4,7 +4,7 @@ All things time related at your fingertips.
 
 ## Features
 
-- Time
+- Time ✅
 - Stop watch
 - Timer
 - Countdown
