@@ -209,7 +209,10 @@ function loadCurrentTimezoneTime() {
 }
 
 // This function populates the timezone panel with localstorage data
-function populateTimezonePanel(timezonesList) {
+function populateTimezonePanel(timezonesList, timezoneToSelect) {
+  // @TODO: Select the last timezone button if no timezoneToSelect is passed (Current logic)
+  // @TODO: Select the timezoneToSelect if it is passed
+
   // Remove all the existing timezones
   buttonContainer.innerHTML = '';
 
@@ -228,6 +231,7 @@ function populateTimezonePanel(timezonesList) {
       "class",
       "flex justify-between py-3 px-5 text-left tabular-nums border-b ease-in-out hover:bg-gray-300 block w-full bg-gray-100"
     );
+
     timezoneButton.innerHTML =
       '<span class="font-semibold">' +
       currentTime +
