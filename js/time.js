@@ -11,6 +11,9 @@ let currentTimeZone = null;
 // ------------------------------------------
 let storedTimezoneListStr = localStorage.getItem("timezones_list");
 let currentTimezones = JSON.parse(storedTimezoneListStr) || [];
+let clickedTimezoneStr = localStorage.getItem("clicked_timezone");
+const timezoneToSelect = JSON.parse(clickedTimezoneStr) || null;
+
 if (currentTimezones.length === 0) {
   // To update user's current time on the main screen
   currentTimezones.push(Intl.DateTimeFormat().resolvedOptions().timeZone);
@@ -91,6 +94,7 @@ function closeTimezonePopup() {
 // Adds selected timezone to the right button container
 function addSelectedTimezone() {
   const selectedTimezone = timezoneSelect.value;
+  localStorage.setItem("clicked_timezone", JSON.stringify(selectedTimezone));
 
   if (!selectedTimezone) {
     errorMsg.classList.remove("hidden");
@@ -170,10 +174,10 @@ document.getElementById("delete-btn").addEventListener("click", function () {
 
   const activeTimezoneName = activeTimezoneEl.textContent;
   const indexToDelete = currentTimezones.indexOf(activeTimezoneName);
-
   currentTimezones.splice(indexToDelete, 1);
+  const setLastToLocal = currentTimezones[currentTimezones.length - 1];
+  localStorage.setItem("clicked_timezone", JSON.stringify(setLastToLocal));
   populateTimezonePanel(currentTimezones);
-
   showToast(deletedTimezoneMsg);
 });
 
@@ -212,9 +216,6 @@ function loadCurrentTimezoneTime() {
 
 // This function populates the timezone panel with localstorage data
 function populateTimezonePanel(timezonesList, timezoneToSelect) {
-  // @TODO: Select the last timezone button if no timezoneToSelect is passed (Current logic)
-  // @TODO: Select the timezoneToSelect if it is passed
-
   // Remove all the existing timezones
   buttonContainer.innerHTML = "";
 
@@ -246,13 +247,19 @@ function populateTimezonePanel(timezonesList, timezoneToSelect) {
     timezoneButton.addEventListener("click", function (event) {
       const targetBtn = event.currentTarget;
       loadElementTime(targetBtn);
+      localStorage.setItem("clicked_timezone", JSON.stringify(timezone));
     });
-
     lastTimezoneButton = timezoneButton;
   });
 
-  lastTimezoneButton.classList.add("current-timezone");
-  currentTimeZone = timezonesList[timezonesList.length - 1];
+  if (!timezoneToSelect) {
+    lastTimezoneButton.classList.add("current-timezone");
+    currentTimeZone = timezonesList[timezonesList.length - 1];
+  } else {
+    findButtonWithSameTimezone();
+    currentTimeZone = timezoneToSelect;
+  }
+
   loadCurrentTimezoneTime();
 
   localStorage.setItem("timezones_list", JSON.stringify(timezonesList));
@@ -260,9 +267,21 @@ function populateTimezonePanel(timezonesList, timezoneToSelect) {
 
 // DOMContentLoaded event
 window.addEventListener("DOMContentLoaded", function () {
-  populateTimezonePanel(currentTimezones);
+  populateTimezonePanel(currentTimezones, timezoneToSelect);
 });
 
 $(document).ready(function () {
   $(".se-select2").select2();
 });
+
+// This function finds the button with the same timezone as the selected timezone
+function findButtonWithSameTimezone() {
+  var buttons = document.querySelectorAll("#buttonContainer button");
+
+  buttons.forEach(function (button) {
+    var span = button.querySelector(".timezone-name");
+    if (span.textContent.trim() === timezoneToSelect) {
+      button.classList.add("current-timezone");
+    }
+  });
+}
