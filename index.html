@@ -18,11 +18,6 @@
     <link rel="stylesheet" href="css/reset.css" />
     <!-- Global CSS -->
     <link rel="stylesheet" href="css/global.css" />
-    <!-- Select CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-      rel="stylesheet"
-    />
     <!-- Fontawesome -->
     <script
       src="https://kit.fontawesome.com/09d48683e2.js"
@@ -56,7 +51,7 @@
         <select
           id="timezone-select"
           name="state"
-          class="border w-full block p-2 rounded-md mb-2 se-select2 w-100"
+          class="border w-full block p-2 rounded-md mb-2 w-100"
         >
           <option value="">Select Timezone</option>
         </select>
@@ -78,7 +73,7 @@
     <!-- Header -->
     <header>
       <nav
-        class="bg-white fixed w-full z-20 top-0 left-0 border-b border-bottom-black"
+        class="bg-white fixed w-full top-0 left-0 border-b border-bottom-black z-[9]"
       >
         <ul
           class="navigation max-w-[90vw] flex flex-wrap justify-between items-center relative mx-auto py-5"
@@ -89,9 +84,9 @@
           <input type="checkbox" id="check" />
 
           <span
-            class="menu flex [&>li]:pl-8 [&>li>a]:text-center [&>li>a]:relative [&>li>a]:transition [&>li>a]:text-gray-500 [&>li>a]:hover:text-black [&>li>a]:duration-200 [&>li>a]:ease-in-out [&>li>a]:text-lg"
+            class="menu flex gap-4 [&>li>a]:text-center [&>li>a]:relative [&>li>a]:transition [&>li>a]:text-gray-500 [&>li>a]:hover:text-black [&>li>a]:duration-200 [&>li>a]:ease-in-out [&>li>a]:text-lg"
           >
-            <li><a href="#">Stop watch</a></li>
+            <li><a href="./pages/stopWatch.html">Stop watch</a></li>
             <li><a href="#">Timer</a></li>
             <li><a href="#">Countdown</a></li>
             <li><a href="#">Pomodoro</a></li>
@@ -158,7 +153,6 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="js/time.js"></script>
   </body>
 </html>
