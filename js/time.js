@@ -86,7 +86,7 @@ function showTimezonePopup() {
 // Closes the popup
 function closeTimezonePopup() {
   popup.classList.add("hidden");
-  $("#timezone-select").val(null).trigger("change");
+  timezoneSelect.value = "";
   errorMsg.classList.add("hidden");
   sameZoneError.classList.add("hidden");
 }
@@ -118,7 +118,7 @@ function addSelectedTimezone() {
 
   sameZoneError.classList.add("hidden");
 
-  $("#timezone-select").val(null).trigger("change");
+  timezoneSelect.value = "";
 
   showToast(addedTimezoneMsg);
   closeTimezonePopup();
