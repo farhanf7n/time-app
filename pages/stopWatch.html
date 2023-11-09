@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>time.fyi — All things time related at your fingertips.</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="css/global.css" />
+    <!-- Select CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/09d48683e2.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Fav icon -->
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
+  </head>
+  <body>
+    <div class="h-screen flex flex-col justify-center items-center">
+      <p class="text-6xl sm:text-7xl md:text-6xl xl:text-9xl mb-2 lg:text-8xl">
+        <span id="time" class="font-extrabold tabular-nums">
+          <span class="animate text-gray-300 animate-pulse">Loading ...</span>
+        </span>
+      </p>
+    </div>
+
+    <div
+      id="toastbox"
+      class="absolute flex items-start flex-col sm:bottom-[15px] sm:left-[15px] bottom-[15px] left-[8px] z-50"
+    ></div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="js/time.js"></script>
+  </body>
+</html>
