@@ -270,10 +270,6 @@ window.addEventListener("DOMContentLoaded", function () {
   populateTimezonePanel(currentTimezones, timezoneToSelect);
 });
 
-$(document).ready(function () {
-  $(".se-select2").select2();
-});
-
 // This function finds the button with the same timezone as the selected timezone
 function findButtonWithSameTimezone() {
   var buttons = document.querySelectorAll("#buttonContainer button");
