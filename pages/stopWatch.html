@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>time.fyi — All things time related at your fingertips.</title>
     <!-- Google Fonts -->
@@ -14,9 +15,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Reset CSS -->
-    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="../css/reset.css" />
     <!-- Global CSS -->
-    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="../css/global.css" />
     <!-- Select CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
@@ -28,9 +29,45 @@
       crossorigin="anonymous"
     ></script>
     <!-- Fav icon -->
-    <link rel="icon" type="image/x-icon" href="favicon.png" />
+    <link rel="icon" type="image/x-icon" href="../favicon.png" />
   </head>
   <body>
+    <!-- Header -->
+    <header>
+      <nav
+        class="bg-white fixed w-full top-0 left-0 border-b border-bottom-black z-[9]"
+      >
+        <ul
+          class="navigation max-w-[90vw] flex flex-wrap justify-between items-center relative mx-auto py-5"
+        >
+          <a class="logo" href="#">
+            <h3 class="font-bold text-xl">Time.fyi</h3>
+          </a>
+          <input type="checkbox" id="check" />
+
+          <span
+            class="menu flex gap-4 [&>li>a]:text-center [&>li>a]:relative [&>li>a]:transition [&>li>a]:text-gray-500 [&>li>a]:hover:text-black [&>li>a]:duration-200 [&>li>a]:ease-in-out [&>li>a]:text-lg"
+          >
+            <li><a href="../index.html">Timer</a></li>
+            <li>
+              <a href="./pages/stopWatch.html" class="font-bold">Stop watch</a>
+            </li>
+            <li><a href="#">Countdown</a></li>
+            <li><a href="#">Pomodoro</a></li>
+            <li><a href="#">Health</a></li>
+            <li><a href="#">Scheduling</a></li>
+            <li><a href="#">Availability</a></li>
+
+            <label for="check" class="close-menu">X</label>
+          </span>
+
+          <label for="check" class="open-menu"
+            ><i class="text-xl fa-solid fa-bars"></i
+          ></label>
+        </ul>
+      </nav>
+    </header>
+
     <div class="h-screen flex flex-col justify-center items-center">
       <p class="text-6xl sm:text-7xl md:text-6xl xl:text-9xl mb-2 lg:text-8xl">
         <span id="time" class="font-extrabold tabular-nums">
@@ -50,6 +87,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="js/time.js"></script>
+    <script src="../js/stopWatch.js"></script>
   </body>
 </html>
