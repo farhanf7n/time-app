@@ -97,3 +97,14 @@ span.select2.select2-container.select2-container--default.select2-container--bel
     right: 0;
   }
 }
+
+/* Stop Watch */
+.table-laps th {
+  padding-bottom: 8px;
+}
+
+.table-laps td,
+.table-laps th {
+  text-align: center;
+  padding: 2px 25px;
+}
