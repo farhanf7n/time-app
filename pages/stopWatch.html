@@ -50,7 +50,9 @@
           >
             <li><a href="../index.html">Timer</a></li>
             <li>
-              <a href="./pages/stopWatch.html" class="font-bold">Stop watch</a>
+              <a href="./pages/stopWatch.html" class="font-bold opacity-100"
+                >Stop watch</a
+              >
             </li>
             <li><a href="#">Countdown</a></li>
             <li><a href="#">Pomodoro</a></li>
@@ -75,33 +77,30 @@
       <p
         class="text-6xl pb-8 sm:text-7xl md:text-6xl xl:text-9xl mb-2 lg:text-8xl"
       >
-        <span
-          id="time"
-          class="font-extrabold tabular-nums flex flex-col sm:flex-row gap-7"
-        >
+        <span id="time" class="font-extrabold flex flex-col sm:flex-row gap-7">
           <span
             title="Days"
-            class="days relative after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Days'] after:text-lg after:text-gray-500 after:font-normal"
+            class="days hidden relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Days'] after:text-lg after:text-gray-500 after:font-normal"
             >00:</span
           >
           <span
             title="Hours"
-            class="hours relative after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Hour'] after:text-lg after:text-gray-500 after:font-normal"
+            class="hours relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Hour'] after:text-lg after:text-gray-500 after:font-normal"
             >00:</span
           >
           <span
             title="Minutes"
-            class="minutes relative after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Minutes'] after:text-lg after:text-gray-500 after:font-normal"
+            class="minutes relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Minutes'] after:text-lg after:text-gray-500 after:font-normal"
             >00:</span
           >
           <span
             title="Seconds"
-            class="seconds relative after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Seconds'] after:text-lg after:text-gray-500 after:font-normal"
-            >00.</span
+            class="seconds relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Seconds'] after:text-lg after:text-gray-500 after:font-normal"
+            >00:</span
           >
           <span
             title="Milliseconds"
-            class="milliseconds relative after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[6px] after:content-['Milliseconds'] after:text-lg after:text-gray-500 after:font-normal"
+            class="milliseconds relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[6px] after:content-['Milliseconds'] after:text-lg after:text-gray-500 after:font-normal"
             >000</span
           >
         </span>
@@ -110,7 +109,7 @@
       <div class="stopWatchButtons flex items-center justify-center gap-5">
         <button
           type="button"
-          class="rounded-lg px-4 py-2 bg-yellow-500 hover:bg-yellow-600 duration-300"
+          class="hidden rounded-lg px-4 py-2 bg-yellow-500 hover:bg-yellow-600 duration-300 transition ease-in-out focus:outline-none focus:shadow-outline"
           id="btn-lap"
         >
           Lap
@@ -118,21 +117,21 @@
         <button
           type="button"
           id="btn-reset"
-          class="rounded-lg px-4 py-2 bg-red-600 text-red-100 hover:bg-red-700 duration-300"
+          class="rounded-lg px-4 py-2 bg-red-600 text-red-100 hover:bg-red-700 duration-300 transition ease-in-out focus:outline-none focus:shadow-outline"
         >
           Reset
         </button>
         <button
           type="button"
-          id="btn-resume"
-          class="rounded-lg px-5 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300"
+          id="btn-start"
+          class="rounded-lg px-5 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 transition duration-300 ease-in-out focus:outline-none focus:shadow-outline"
         >
           Start
         </button>
         <button
           type="button"
           id="btn-pause"
-          class="rounded-lg px-4 py-2 bg-green-300 hover:bg-green-400 duration-300"
+          class="hidden rounded-lg px-4 py-2 bg-green-300 hover:bg-green-400 transition duration-300 ease-in-out focus:outline-none focus:shadow-outline"
         >
           Stop
         </button>
