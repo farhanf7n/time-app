@@ -71,7 +71,7 @@
     </header>
 
     <div
-      class="pt-28 sm:pt-44 flex gap-12 flex-col justify-center items-center"
+      class="pt-28 sm:pt-64 flex gap-12 flex-col justify-center items-center"
     >
       <!-- Time Displaying Area -->
       <p
@@ -137,7 +137,7 @@
         </button>
       </div>
       <!-- Laps Result -->
-      <div class="lap_result">
+      <div class="lap_result hidden">
         <h3 class="text-2xl font-bold mb-2 text-center">Laps</h3>
         <table
           id="tbl-laps"
@@ -153,41 +153,10 @@
               <th>Total time</th>
             </tr>
           </thead>
-          <tbody class="[&>tr>td]:text-gray-500">
-            <tr>
-              <td>5</td>
-              <td id="lbl-lap-time">00:00.50</td>
-              <td id="lbl-lap-total">00:01.72</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>00:00.16</td>
-              <td>00:01.21</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>00:00.17</td>
-              <td>00:01.05</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>00:00.22</td>
-              <td>00:00.88</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>00:00.65</td>
-              <td>00:00.65</td>
-            </tr>
-          </tbody>
+          <tbody class="[&>tr>td]:text-gray-500"></tbody>
         </table>
       </div>
     </div>
-
-    <div
-      id="toastbox"
-      class="absolute flex items-start flex-col sm:bottom-[15px] sm:left-[15px] bottom-[15px] left-[8px] z-50"
-    ></div>
 
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
