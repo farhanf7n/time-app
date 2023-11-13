@@ -7,14 +7,12 @@ const daysEl = document.getElementsByClassName("days")[0];
 const hoursEl = document.getElementsByClassName("hours")[0];
 const minutesEl = document.getElementsByClassName("minutes")[0];
 const secondsEl = document.getElementsByClassName("seconds")[0];
-const millisecondsEl = document.getElementsByClassName("milliseconds")[0];
 const lapResults = document.getElementsByClassName("lap_result")[0];
 
 let days = 0;
 let hour = 0;
 let minute = 0;
 let second = 0;
-let milliseconds = 0;
 let count = 0;
 
 // Start the stopwatch
@@ -22,7 +20,6 @@ let intervalId;
 
 // Fixes the leading zero issue
 function fixLeadingZero() {
-  milliseconds = milliseconds.toString().padStart(3, "0");
   second = second.toString().padStart(2, "0");
   minute = minute.toString().padStart(2, "0");
   hour = hour.toString().padStart(2, "0");
@@ -30,12 +27,7 @@ function fixLeadingZero() {
 
 // Stopwatch functionality
 function startStopWatch() {
-  milliseconds++;
-  if (milliseconds == 1000) {
-    second++;
-    milliseconds = 0;
-  }
-
+  second++;
   if (second == 60) {
     minute++;
     second = 0;
@@ -56,8 +48,7 @@ function startStopWatch() {
   daysEl.innerHTML = days + ":";
   hoursEl.innerHTML = hour + ":";
   minutesEl.innerHTML = minute + ":";
-  secondsEl.innerHTML = second + ":";
-  millisecondsEl.textContent = milliseconds;
+  secondsEl.innerHTML = second;
 }
 
 // Start the stopwatch
@@ -66,7 +57,7 @@ startButton.addEventListener("click", function () {
   pauseButton.classList.remove("hidden");
   lapButton.classList.remove("hidden");
   resetButton.classList.add("hidden");
-  intervalId = setInterval(startStopWatch, 1);
+  intervalId = setInterval(startStopWatch, 1000); // Changed from 10 to 1000
 });
 
 // Pause the stopwatch
@@ -86,15 +77,13 @@ resetButton.addEventListener("click", function () {
   hour = 0;
   minute = 0;
   second = 0;
-  milliseconds = 0;
 
   fixLeadingZero();
 
   daysEl.innerHTML = days + ":";
   hoursEl.innerHTML = hour + ":";
   minutesEl.innerHTML = minute + ":";
-  secondsEl.innerHTML = second + ":";
-  millisecondsEl.textContent = milliseconds;
+  secondsEl.innerHTML = second;
 
   let tableBody = document.getElementsByTagName("tbody")[0];
   tableBody.innerHTML = "";
