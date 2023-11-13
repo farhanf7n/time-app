@@ -93,6 +93,7 @@ resetButton.addEventListener("click", function () {
 lapButton.addEventListener("click", function () {
   lapResults.classList.remove("hidden");
   count++;
+  fixLeadingZero();
   let tableBody = document.getElementsByTagName("tbody")[0];
   let row = tableBody.insertRow(0);
   let cell1 = row.insertCell(0); //Lap Count
