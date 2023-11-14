@@ -6,6 +6,7 @@ const lapsTable = document.getElementById("tbl-laps");
 const daysEl = document.getElementsByClassName("days")[0];
 const hoursEl = document.getElementsByClassName("hours")[0];
 const minutesEl = document.getElementsByClassName("minutes")[0];
+const millisecondsEl = document.getElementsByClassName("milliseconds")[0];
 const secondsEl = document.getElementsByClassName("seconds")[0];
 const lapResults = document.getElementsByClassName("lap_result")[0];
 
@@ -13,6 +14,7 @@ let days = 0;
 let hour = 0;
 let minute = 0;
 let second = 0;
+let milliseconds = 0;
 let count = 0;
 
 // Start the stopwatch
@@ -20,6 +22,7 @@ let intervalId;
 
 // Fixes the leading zero issue
 function fixLeadingZero() {
+  milliseconds = milliseconds.toString().padStart(2, "0");
   second = second.toString().padStart(2, "0");
   minute = minute.toString().padStart(2, "0");
   hour = hour.toString().padStart(2, "0");
@@ -27,7 +30,12 @@ function fixLeadingZero() {
 
 // Stopwatch functionality
 function startStopWatch() {
-  second++;
+  milliseconds++;
+  if (milliseconds == 100) {
+    second++;
+    milliseconds = 0;
+  }
+
   if (second == 60) {
     minute++;
     second = 0;
@@ -48,7 +56,8 @@ function startStopWatch() {
   daysEl.innerHTML = days + ":";
   hoursEl.innerHTML = hour + ":";
   minutesEl.innerHTML = minute + ":";
-  secondsEl.innerHTML = second;
+  secondsEl.innerHTML = second + ":";
+  millisecondsEl.innerHTML = milliseconds;
 }
 
 // Start the stopwatch
@@ -57,7 +66,7 @@ startButton.addEventListener("click", function () {
   pauseButton.classList.remove("hidden");
   lapButton.classList.remove("hidden");
   resetButton.classList.add("hidden");
-  intervalId = setInterval(startStopWatch, 1000); // Changed from 10 to 1000
+  intervalId = setInterval(startStopWatch, 10); // Changed from 10 to 1000
 });
 
 // Pause the stopwatch
@@ -77,13 +86,15 @@ resetButton.addEventListener("click", function () {
   hour = 0;
   minute = 0;
   second = 0;
+  milliseconds = 0;
 
   fixLeadingZero();
 
   daysEl.innerHTML = days + ":";
   hoursEl.innerHTML = hour + ":";
   minutesEl.innerHTML = minute + ":";
-  secondsEl.innerHTML = second;
+  secondsEl.innerHTML = second + ":";
+  millisecondsEl.innerHTML = milliseconds;
 
   let tableBody = document.getElementsByTagName("tbody")[0];
   tableBody.innerHTML = "";
@@ -98,8 +109,14 @@ lapButton.addEventListener("click", function () {
   let row = tableBody.insertRow(0);
   let cell1 = row.insertCell(0); //Lap Count
   let cell2 = row.insertCell(1); //Time
-  let cell3 = row.insertCell(2); //Total lap time
   cell1.innerHTML = count;
   cell2.innerHTML =
-    (days > 1 ? days + ":" : "") + hour + ":" + minute + ":" + second;
+    (days > 1 ? days + ":" : "") +
+    hour +
+    ":" +
+    minute +
+    ":" +
+    second +
+    ":" +
+    milliseconds;
 });
