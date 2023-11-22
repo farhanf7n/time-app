@@ -46,19 +46,45 @@
           <input type="checkbox" id="check" />
 
           <span
-            class="menu flex gap-4 [&>li>a]:text-center [&>li>a]:relative [&>li>a]:transition [&>li>a]:text-gray-500 [&>li>a]:hover:text-black [&>li>a]:duration-200 [&>li>a]:ease-in-out [&>li>a]:text-lg"
+            class="menu flex gap-4 [&>li>a]:text-center [&>li>a]:relative [&>li>a]:transition [&>li>a]:text-gray-500 [&>li>a]:duration-200 [&>li>a]:ease-in-out [&>li>a]:text-lg"
           >
-            <li><a href="../index.html">Time</a></li>
             <li>
-              <a href="./pages/stopWatch.html" class="font-bold opacity-100"
+              <a href="../index.html" class="hover:text-black hover:opacity-100"
+                >Time</a
+              >
+            </li>
+            <li>
+              <a
+                href="./pages/stopWatch.html"
+                class="hover:text-black hover:opacity-100"
                 >Stop watch</a
               >
             </li>
-            <li><a href="#">Countdown</a></li>
-            <li><a href="#">Pomodoro</a></li>
-            <li><a href="#">Health</a></li>
-            <li><a href="#">Scheduling</a></li>
-            <li><a href="#">Availability</a></li>
+            <li>
+              <a
+                href="#"
+                class="font-bold text-black hover:text-black opacity-100"
+                >Countdown</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-black hover:opacity-100"
+                >Pomodoro</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-black hover:opacity-100">Health</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-black hover:opacity-100"
+                >Scheduling</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-black hover:opacity-100"
+                >Availability</a
+              >
+            </li>
 
             <label for="check" class="close-menu">X</label>
           </span>
@@ -163,6 +189,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="../js/stopWatch.js"></script>
+    <script src="../js/countDown.js"></script>
   </body>
 </html>
