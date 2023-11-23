@@ -99,7 +99,7 @@
     <!-- Add Countdown Popup -->
     <div
       id="add-countdown-popup"
-      class="fixed top-0 left-0 bottom-0 right-0 bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center"
+      class="fixed hidden top-0 left-0 bottom-0 right-0 bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center"
     >
       <div
         id="popup-inner"
@@ -176,18 +176,17 @@
           </div>
 
           <!-- Title for countdown -->
-          <div class="relative float-label-input">
-            <input
-              type="text"
-              id="title"
-              placeholder=" "
-              class="text-sm block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 block appearance-none leading-normal focus:border-blue-400"
-            />
+          <div class="group relative w-full">
             <label
-              for="title"
-              class="text-sm absolute top-3 left-0 text-gray-500 pointer-events-none transition duration-200 ease-in-outbg-white px-2 text-grey-darker"
+              for="2"
+              class="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400"
               >Title</label
             >
+            <input
+              id="2"
+              type="text"
+              class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-thin outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400"
+            />
           </div>
 
           <!-- Popup bottom buttons -->
@@ -211,6 +210,81 @@
                 Start
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Countdown Section -->
+    <div
+      class="flex flex-col md:flex-row sm:flex-col h-screen pt-[69px] justify-center"
+    >
+      <div class="flex py-32 justify-center items-center md:py-0">
+        <div
+          class="p-5 md:min-w-[500px] min-w-full rounded-md flex flex-col justify-center gap-3"
+        >
+          <h1 class="title text-center text-2xl text-gray-500">
+            Countdown Name
+          </h1>
+          <!-- Time Displaying Area -->
+          <p
+            class="text-6xl pb-8 sm:text-7xl md:text-6xl xl:text-9xl mb-2 lg:text-8xl"
+          >
+            <span
+              id="time"
+              class="font-extrabold flex flex-col sm:flex-row gap-7"
+            >
+              <span
+                title="Days"
+                class="days hidden relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Days'] after:text-lg after:text-gray-500 after:font-normal"
+                >00:</span
+              >
+              <span
+                title="Hours"
+                class="hours relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Hour'] after:text-lg after:text-gray-500 after:font-normal"
+                >00:</span
+              >
+              <span
+                title="Minutes"
+                class="minutes relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Minutes'] after:text-lg after:text-gray-500 after:font-normal"
+                >00:</span
+              >
+              <span
+                title="Seconds"
+                class="seconds relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Seconds'] after:text-lg after:text-gray-500 after:font-normal"
+                >00:</span
+              >
+              <span
+                title="Milliseconds"
+                class="milliseconds relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[5px] after:content-['Milliseconds'] after:text-lg after:text-gray-500 after:font-normal"
+                >00</span
+              >
+            </span>
+          </p>
+
+          <!-- Main Countdown Buttons -->
+          <div class="popup-buttons flex justify-center items-center gap-3">
+            <button
+              id="add-timezone-popup-btn"
+              class="bg-gray-500 hover:bg-black rounded-md block text-white py-3 px-4"
+            >
+              Edit Timer
+            </button>
+            <button
+              class="border rounded-md text-gray-500 hover:text-black hover:bg-gray-100 block focus:outline-none focus-visible:outline-none py-3 px-4"
+            >
+              Reset
+            </button>
+            <button
+              class="bg-gray-700 hover:bg-black rounded-md block text-white py-3 px-4"
+            >
+              Start
+            </button>
+            <button
+              class="bg-gray-700 hidden hover:bg-black rounded-md block text-white py-3 px-4"
+            >
+              Stop
+            </button>
           </div>
         </div>
       </div>
