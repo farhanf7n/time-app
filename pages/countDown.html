@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>time.fyi — All things time related at your fingertips.</title>
+    <title>Countdown</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,14 +55,14 @@
             </li>
             <li>
               <a
-                href="./pages/stopWatch.html"
+                href="./stopWatch.html"
                 class="hover:text-black hover:opacity-100"
                 >Stop watch</a
               >
             </li>
             <li>
               <a
-                href="#"
+                href="./countDown.html"
                 class="font-bold text-black hover:text-black opacity-100"
                 >Countdown</a
               >
@@ -96,90 +96,123 @@
       </nav>
     </header>
 
+    <!-- Add Countdown Popup -->
     <div
-      class="pt-28 sm:pt-64 flex gap-12 flex-col justify-center items-center"
+      id="add-countdown-popup"
+      class="fixed top-0 left-0 bottom-0 right-0 bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center"
     >
-      <!-- Time Displaying Area -->
-      <p
-        class="text-6xl pb-8 sm:text-7xl md:text-6xl xl:text-9xl mb-2 lg:text-8xl"
+      <div
+        id="popup-inner"
+        class="p-5 md:min-w-[500px] min-w-full bg-white rounded-md bg-"
       >
-        <span id="time" class="font-extrabold flex flex-col sm:flex-row gap-7">
+        <div class="flex items-center justify-between">
+          <h2 class="font-semibold text-2xl mb-0.5">Edit Timer</h2>
           <span
-            title="Days"
-            class="days hidden relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Days'] after:text-lg after:text-gray-500 after:font-normal"
-            >00:</span
+            id="close-popup-btn"
+            class="bg-gray-700 px-3 cursor-pointer hover:bg-black rounded-md block text-white p-2"
+            >&times;</span
           >
-          <span
-            title="Hours"
-            class="hours relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Hour'] after:text-lg after:text-gray-500 after:font-normal"
-            >00:</span
-          >
-          <span
-            title="Minutes"
-            class="minutes relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Minutes'] after:text-lg after:text-gray-500 after:font-normal"
-            >00:</span
-          >
-          <span
-            title="Seconds"
-            class="seconds relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Seconds'] after:text-lg after:text-gray-500 after:font-normal"
-            >00:</span
-          >
-          <span
-            title="Milliseconds"
-            class="milliseconds relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[5px] after:content-['Milliseconds'] after:text-lg after:text-gray-500 after:font-normal"
-            >00</span
-          >
-        </span>
-      </p>
-      <!-- Stop watch buttons -->
-      <div class="stopWatchButtons flex items-center justify-center gap-5">
-        <button
-          type="button"
-          class="hidden rounded-lg px-4 py-2 bg-yellow-500 hover:bg-yellow-600 duration-300 transition ease-in-out focus:outline-none focus:shadow-outline"
-          id="btn-lap"
-        >
-          Lap
-        </button>
-        <button
-          type="button"
-          id="btn-reset"
-          class="rounded-lg px-4 py-2 bg-red-600 text-red-100 hover:bg-red-700 duration-300 transition ease-in-out focus:outline-none focus:shadow-outline"
-        >
-          Reset
-        </button>
-        <button
-          type="button"
-          id="btn-start"
-          class="rounded-lg px-5 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 transition duration-300 ease-in-out focus:outline-none focus:shadow-outline"
-        >
-          Start
-        </button>
-        <button
-          type="button"
-          id="btn-pause"
-          class="hidden rounded-lg px-4 py-2 bg-green-300 hover:bg-green-400 transition duration-300 ease-in-out focus:outline-none focus:shadow-outline"
-        >
-          Stop
-        </button>
-      </div>
-      <!-- Laps Result -->
-      <div class="lap_result hidden">
-        <h3 class="text-2xl font-bold mb-2 text-center">Laps</h3>
-        <table
-          id="tbl-laps"
-          class="center table-laps mx-auto border-collapse border-spacing-0"
-          style="font-size: 21px"
-        >
-          <thead>
-            <tr
-              class="text-xl text-gray-500 [&>th]:font-medium [&>th]:text-black"
+        </div>
+        <div class="flex flex-col gap-4">
+          <!-- Days enable/disable -->
+          <div class="flex items-center gap-3 days-checkbox mt-2">
+            <input type="checkbox" name="" id="" class="rounded h-4 w-4" />
+            <label for="DaysEn" class="text-sm text-gray-500 font-medium"
+              >Days</label
             >
-              <th>Lap</th>
-              <th>Time</th>
-            </tr>
-          </thead>
-          <tbody class="[&>tr>td]:text-gray-500"></tbody>
-        </table>
+          </div>
+          <!-- Countdown Selection -->
+          <div class="flex gap-3 justify-center">
+            <!-- Days input -->
+            <div class="group relative w-full days-input hidden">
+              <label
+                for="days"
+                class="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400"
+                >Days</label
+              >
+              <input
+                id="days"
+                type="number"
+                class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-thin outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+            <!-- Hours input -->
+            <div class="group relative w-full">
+              <label
+                for="hours"
+                class="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400"
+                >Hours</label
+              >
+              <input
+                id="hours"
+                type="number"
+                class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-thin outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400"
+                min="0"
+              />
+            </div>
+            <!-- Minutes input -->
+            <div class="group relative w-full">
+              <label
+                for="2"
+                class="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400"
+                >Minutes</label
+              >
+              <input
+                id="2"
+                type="number"
+                class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-thin outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400"
+                min="1"
+                max="59"
+              />
+            </div>
+          </div>
+
+          <!-- Browser Notification -->
+          <div class="flex items-center gap-3">
+            <span class="text-gray-500 font-medium text-sm"
+              >Browser Notification</span
+            >
+            <input type="checkbox" name="" id="" / class="rounded h-4 w-4">
+          </div>
+
+          <!-- Title for countdown -->
+          <div class="relative float-label-input">
+            <input
+              type="text"
+              id="title"
+              placeholder=" "
+              class="text-sm block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 block appearance-none leading-normal focus:border-blue-400"
+            />
+            <label
+              for="title"
+              class="text-sm absolute top-3 left-0 text-gray-500 pointer-events-none transition duration-200 ease-in-outbg-white px-2 text-grey-darker"
+              >Title</label
+            >
+          </div>
+
+          <!-- Popup bottom buttons -->
+          <div class="popup-buttons flex justify-between items-center">
+            <button
+              id="add-timezone-popup-btn"
+              class="bg-gray-500 hover:bg-black rounded-md block text-white p-2"
+            >
+              Test Notification
+            </button>
+
+            <div class="flex justify-between items-center gap-3">
+              <button
+                class="border rounded-md text-gray-500 hover:text-black hover:bg-gray-100 block focus:outline-none focus-visible:outline-none p-2"
+              >
+                Cancel
+              </button>
+              <button
+                class="bg-gray-700 hover:bg-black rounded-md block text-white p-2"
+              >
+                Start
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
