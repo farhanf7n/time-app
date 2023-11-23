@@ -108,3 +108,9 @@ span.select2.select2-container.select2-container--default.select2-container--bel
   text-align: center;
   padding: 2px 25px;
 }
+
+.float-label-input:focus-within label,
+.float-label-input input:not(:placeholder-shown) + label {
+  transform: translateY(-1.5rem) scale(0.75);
+  background-color: white;
+}
