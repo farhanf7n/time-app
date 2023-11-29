@@ -126,9 +126,9 @@
               <select
                 required
                 id="hour-input"
-                class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-thin outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 invalid:border-red-500"
+                class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-normal outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 invalid:border-red-500"
               >
-                <option value="" disabled selected>Select Hours</option>
+                <option value="" disabled selected>Select hours</option>
                 <option>01</option>
                 <option>02</option>
                 <option>03</option>
@@ -241,9 +241,9 @@
               <select
                 required
                 id="minute-input"
-                class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-thin outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 invalid:border-red-500"
+                class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-normal outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 invalid:border-red-500"
               >
-                <option value="" disabled selected>Select Minutes</option>
+                <option value="" disabled selected>Select minutes</option>
                 <option>01</option>
                 <option>02</option>
                 <option>03</option>
@@ -315,9 +315,9 @@
               >Countdown title</label
             >
             <input
-              id="countdown-title"
+              id="countdown-title-popup"
               type="text"
-              class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-thin outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400"
+              class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-normal outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
@@ -337,9 +337,9 @@
                 Cancel
               </button>
               <button
-                class="bg-gray-700 hover:bg-black rounded-md block text-white p-2"
+                class="done-timer-btn bg-gray-700 hover:bg-black rounded-md block text-white p-2"
               >
-                Start
+                Done
               </button>
             </div>
           </div>
@@ -390,7 +390,7 @@
         <div
           class="p-5 md:min-w-[500px] min-w-full rounded-md flex flex-col justify-center gap-3"
         >
-          <h1 class="countdown-title text-center text-2xl text-gray-500">
+          <h1 class="main-screen-title text-center text-2xl text-gray-500">
             Countdown Name
           </h1>
           <!-- Time Displaying Area -->
@@ -437,7 +437,7 @@
               Reset
             </button>
             <button
-              class="pointer-events-none bg-gray-700 hover:bg-black rounded-md block text-white py-3 px-4"
+              class="pointer-events-none start-timer-button bg-gray-700 hover:bg-black rounded-md block text-white py-3 px-4"
             >
               Start
             </button>
