@@ -1,20 +1,71 @@
 const titleEL = document.querySelector(".countdown-title");
-const daysEl = document.querySelector(".days");
 const hoursEl = document.querySelector(".hours");
 const minutesEl = document.querySelector(".minutes");
 const millisecondsEl = document.querySelector(".milliseconds");
 const secondsEl = document.querySelector(".seconds");
 const addTimerBtn = document.querySelector(".edit-timer-btn");
+
+// Edit Timer Popup's stuff
 const minuteInput = document.getElementById("minute-input");
 const hourInput = document.getElementById("hour-input");
-const notificationCheckbox = document.getElementById("notification-checkbox");
+const titleInput = document.getElementById("countdown-title-popup");
+const donePopupButton = document.querySelector(".done-timer-btn");
+
 const countdownTitle = document.getElementById("countdown-title");
+const mainScreenTitle = document.querySelector(".main-screen-title");
 const addTimerPopup = document.getElementById("add-countdown-popup");
 const successTimerPopup = document.getElementById("success-countdown-popup");
 const cancelButton = document.querySelector(".cancel-button");
 const closeSuccess = document.querySelector(".close-success-popup-btn");
 const testNotificationButton = document.getElementById("test-notification-btn");
 const closeTimerpopup = document.getElementById("close-popup-btn");
+
+let days = 0;
+let hour = 0;
+let minute = 0;
+let second = 0;
+let milliseconds = 0;
+let count = 0;
+
+// Fixes the leading zero issue
+function fixLeadingZero() {
+  milliseconds = milliseconds.toString().padStart(2, "0");
+  second = second.toString().padStart(2, "0");
+  minute = minute.toString().padStart(2, "0");
+  hour = hour.toString().padStart(2, "0");
+}
+
+// Stopwatch functionality
+function startStopWatch() {
+  milliseconds++;
+  if (milliseconds == 100) {
+    second++;
+    milliseconds = 0;
+  }
+
+  if (second == 60) {
+    minute--;
+    second = 0;
+  }
+
+  if (minute == 60) {
+    hour--;
+    minute = 0;
+  }
+
+  if (hour == 24) {
+    days++;
+    hour = 0;
+  }
+
+  fixLeadingZero();
+
+  daysEl.innerHTML = days + ":";
+  hoursEl.innerHTML = hour + ":";
+  minutesEl.innerHTML = minute + ":";
+  secondsEl.innerHTML = second + ":";
+  millisecondsEl.innerHTML = milliseconds;
+}
 
 // Closes the popup
 function closeTimezonePopup() {
@@ -24,6 +75,7 @@ function closeTimezonePopup() {
   hourInput.value = "";
   notificationCheckbox.checked = false;
   countdownTitle.value = "";
+  titleInput.value = "";
 }
 
 // Cancel Button
@@ -38,7 +90,7 @@ addTimerBtn.addEventListener("click", function () {
 
 // Success Cross button
 closeSuccess.addEventListener("click", function () {
-  closeTimezonePopup();
+  successTimerPopup.classList.add("hidden");
 });
 
 // Times Cross Button
@@ -49,4 +101,25 @@ closeTimerpopup.addEventListener("click", function () {
 // Test Notification
 testNotificationButton.addEventListener("click", function () {
   successTimerPopup.classList.remove("hidden");
+});
+
+// Done timer button
+donePopupButton.addEventListener("click", function () {
+  mainScreenTitle.textContent = titleInput.value;
+  if (hourInput.value) {
+    hoursEl.innerHTML = hourInput.value + ": ";
+  } else {
+    hoursEl.innerHTML = "00: ";
+  }
+
+  if (minuteInput.value) {
+    minutesEl.innerHTML = minuteInput.value + ": ";
+  } else {
+    minutesEl.innerHTML = "00: ";
+  }
+
+  if (hourInput.value && minuteInput.value && titleInput.value) {
+    donePopupButton.classList.remove("pointer-events-none");
+  }
+  closeTimezonePopup();
 });
