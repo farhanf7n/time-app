@@ -1,462 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Countdown</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Reset CSS -->
-    <link rel="stylesheet" href="../css/reset.css" />
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="../css/global.css" />
-    <!-- Select CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-      rel="stylesheet"
-    />
-    <!-- Fontawesome -->
-    <script
-      src="https://kit.fontawesome.com/09d48683e2.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Fav icon -->
-    <link rel="icon" type="image/x-icon" href="../favicon.png" />
-  </head>
-  <body>
-    <!-- Header -->
-    <header>
-      <nav
-        class="bg-white fixed w-full top-0 left-0 border-b border-bottom-black z-[9]"
-      >
-        <ul
-          class="navigation max-w-[90vw] flex flex-wrap justify-between items-center relative mx-auto py-5"
-        >
-          <a class="logo" href="../index.html">
-            <h3 class="font-bold text-xl">Time.fyi</h3>
-          </a>
-          <input type="checkbox" id="check" />
 
-          <span
-            class="menu flex gap-4 [&>li>a]:text-center [&>li>a]:relative [&>li>a]:transition [&>li>a]:text-gray-500 [&>li>a]:duration-200 [&>li>a]:ease-in-out [&>li>a]:text-lg"
-          >
-            <li>
-              <a href="../index.html" class="hover:text-black hover:opacity-100"
-                >Time</a
-              >
-            </li>
-            <li>
-              <a
-                href="./stopWatch.html"
-                class="hover:text-black hover:opacity-100"
-                >Stop watch</a
-              >
-            </li>
-            <li>
-              <a
-                href="./countDown.html"
-                class="font-bold text-black hover:text-black opacity-100"
-                >Countdown</a
-              >
-            </li>
-            <li>
-              <a href="#" class="hover:text-black hover:opacity-100"
-                >Pomodoro</a
-              >
-            </li>
-            <li>
-              <a href="#" class="hover:text-black hover:opacity-100">Health</a>
-            </li>
-            <li>
-              <a href="#" class="hover:text-black hover:opacity-100"
-                >Scheduling</a
-              >
-            </li>
-            <li>
-              <a href="#" class="hover:text-black hover:opacity-100"
-                >Availability</a
-              >
-            </li>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countdown</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Reset CSS -->
+  <link rel="stylesheet" href="../css/reset.css" />
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="../css/global.css" />
+  <!-- Select CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <!-- Fontawesome -->
+  <script src="https://kit.fontawesome.com/09d48683e2.js" crossorigin="anonymous"></script>
+  <!-- Fav icon -->
+  <link rel="icon" type="image/x-icon" href="../favicon.png" />
+</head>
 
-            <label for="check" class="close-menu">X</label>
-          </span>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="bg-white fixed w-full top-0 left-0 border-b border-bottom-black z-[9]">
+      <ul class="navigation max-w-[90vw] flex flex-wrap justify-between items-center relative mx-auto py-5">
+        <a class="logo" href="../index.html">
+          <h3 class="font-bold text-xl">Time.fyi</h3>
+        </a>
+        <input type="checkbox" id="check" />
 
-          <label for="check" class="open-menu"
-            ><i class="text-xl fa-solid fa-bars"></i
-          ></label>
-        </ul>
-      </nav>
-    </header>
+        <span
+          class="menu flex gap-4 [&>li>a]:text-center [&>li>a]:relative [&>li>a]:transition [&>li>a]:text-gray-500 [&>li>a]:duration-200 [&>li>a]:ease-in-out [&>li>a]:text-lg">
+          <li>
+            <a href="../index.html" class="hover:text-black hover:opacity-100">Time</a>
+          </li>
+          <li>
+            <a href="./stopWatch.html" class="hover:text-black hover:opacity-100">Stop watch</a>
+          </li>
+          <li>
+            <a href="./countDown.html" class="font-bold text-black hover:text-black opacity-100">Countdown</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-black hover:opacity-100">Pomodoro</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-black hover:opacity-100">Health</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-black hover:opacity-100">Scheduling</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-black hover:opacity-100">Availability</a>
+          </li>
 
-    <!-- Add Countdown Popup -->
-    <div
-      id="add-countdown-popup"
-      class="fixed hidden top-0 left-0 bottom-0 right-0 bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center"
-    >
-      <div
-        id="popup-inner"
-        class="p-5 md:min-w-[500px] min-w-full bg-white rounded-md bg-"
-      >
-        <div class="flex items-center justify-between">
-          <h2 class="font-semibold text-2xl mb-0.5">Edit Timer</h2>
-          <span
-            id="close-popup-btn"
-            class="bg-gray-700 px-3 cursor-pointer hover:bg-black rounded-md block text-white p-2"
-            >&times;</span
-          >
-        </div>
-        <div class="flex flex-col gap-4">
-          <!-- Countdown Selection -->
-          <div class="flex gap-3 justify-center flex-col md:flex-row">
-            <!-- Hours input -->
-            <div class="group relative w-full">
-              <label
-                for="hours"
-                class="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400"
-                >Hours</label
-              >
-              <select
-                required
-                id="hour-input"
-                class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-normal outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 invalid:border-red-500"
-              >
-                <option value="" disabled selected>Select hours</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>
-                <option>08</option>
-                <option>09</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-                <option>13</option>
-                <option>14</option>
-                <option>15</option>
-                <option>16</option>
-                <option>17</option>
-                <option>18</option>
-                <option>19</option>
-                <option>20</option>
-                <option>21</option>
-                <option>22</option>
-                <option>23</option>
-                <option>24</option>
-                <option>25</option>
-                <option>26</option>
-                <option>27</option>
-                <option>28</option>
-                <option>29</option>
-                <option>30</option>
-                <option>31</option>
-                <option>32</option>
-                <option>33</option>
-                <option>34</option>
-                <option>35</option>
-                <option>36</option>
-                <option>37</option>
-                <option>38</option>
-                <option>39</option>
-                <option>40</option>
-                <option>41</option>
-                <option>42</option>
-                <option>43</option>
-                <option>44</option>
-                <option>45</option>
-                <option>46</option>
-                <option>47</option>
-                <option>48</option>
-                <option>49</option>
-                <option>50</option>
-                <option>51</option>
-                <option>52</option>
-                <option>53</option>
-                <option>54</option>
-                <option>55</option>
-                <option>56</option>
-                <option>57</option>
-                <option>58</option>
-                <option>59</option>
-                <option>60</option>
-                <option>61</option>
-                <option>62</option>
-                <option>63</option>
-                <option>64</option>
-                <option>65</option>
-                <option>66</option>
-                <option>67</option>
-                <option>68</option>
-                <option>69</option>
-                <option>70</option>
-                <option>71</option>
-                <option>72</option>
-                <option>73</option>
-                <option>74</option>
-                <option>75</option>
-                <option>76</option>
-                <option>77</option>
-                <option>78</option>
-                <option>79</option>
-                <option>80</option>
-                <option>81</option>
-                <option>82</option>
-                <option>83</option>
-                <option>84</option>
-                <option>85</option>
-                <option>86</option>
-                <option>87</option>
-                <option>88</option>
-                <option>89</option>
-                <option>90</option>
-                <option>91</option>
-                <option>92</option>
-                <option>93</option>
-                <option>94</option>
-                <option>95</option>
-                <option>96</option>
-                <option>97</option>
-                <option>98</option>
-                <option>99</option>
-              </select>
-            </div>
+          <label for="check" class="close-menu">X</label>
+        </span>
 
-            <!-- Minutes input -->
-            <div class="group relative w-full">
-              <label
-                for="minutes"
-                class="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400"
-                >Minutes</label
-              >
-              <select
-                required
-                id="minute-input"
-                class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-normal outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 invalid:border-red-500"
-              >
-                <option value="" disabled selected>Select minutes</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>
-                <option>08</option>
-                <option>09</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-                <option>13</option>
-                <option>14</option>
-                <option>15</option>
-                <option>16</option>
-                <option>17</option>
-                <option>18</option>
-                <option>19</option>
-                <option>20</option>
-                <option>21</option>
-                <option>22</option>
-                <option>23</option>
-                <option>24</option>
-                <option>25</option>
-                <option>26</option>
-                <option>27</option>
-                <option>28</option>
-                <option>29</option>
-                <option>30</option>
-                <option>31</option>
-                <option>32</option>
-                <option>33</option>
-                <option>34</option>
-                <option>35</option>
-                <option>36</option>
-                <option>37</option>
-                <option>38</option>
-                <option>39</option>
-                <option>40</option>
-                <option>41</option>
-                <option>42</option>
-                <option>43</option>
-                <option>44</option>
-                <option>45</option>
-                <option>46</option>
-                <option>47</option>
-                <option>48</option>
-                <option>49</option>
-                <option>50</option>
-                <option>51</option>
-                <option>52</option>
-                <option>53</option>
-                <option>54</option>
-                <option>55</option>
-                <option>56</option>
-                <option>57</option>
-                <option>58</option>
-                <option>59</option>
-              </select>
-            </div>
-          </div>
+        <label for="check" class="open-menu"><i class="text-xl fa-solid fa-bars"></i></label>
+      </ul>
+    </nav>
+  </header>
 
-          <!-- Title for countdown -->
+  <!-- Add Countdown Popup -->
+  <div id="add-countdown-popup"
+    class="fixed hidden top-0 left-0 bottom-0 right-0 bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center">
+    <div id="popup-inner" class="p-5 md:min-w-[500px] min-w-full bg-white rounded-md bg-">
+      <div class="flex items-center justify-between">
+        <h2 class="font-semibold text-2xl mb-0.5">Edit Timer</h2>
+        <span id="close-popup-btn"
+          class="bg-gray-700 px-3 cursor-pointer hover:bg-black rounded-md block text-white p-2">&times;</span>
+      </div>
+      <div class="flex flex-col gap-4">
+        <!-- Countdown Selection -->
+        <div class="flex gap-3 justify-center flex-col md:flex-row">
+          <!-- Hours input -->
           <div class="group relative w-full">
-            <label
-              for="2"
-              class="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400"
-              >Countdown title</label
-            >
-            <input
-              id="countdown-title-popup"
-              type="text"
-              class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-normal outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400"
-            />
+            <label for="hours"
+              class="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400">Hours</label>
+            <select id="hour-input"
+              class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-normal outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 invalid:border-red-500">
+              <option value="" disabled selected>Select hours</option>
+              <option>01</option>
+              <option>02</option>
+              <option>03</option>
+              <option>04</option>
+              <option>05</option>
+              <option>06</option>
+              <option>07</option>
+              <option>08</option>
+              <option>09</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
+              <option>25</option>
+              <option>26</option>
+              <option>27</option>
+              <option>28</option>
+              <option>29</option>
+              <option>30</option>
+              <option>31</option>
+              <option>32</option>
+              <option>33</option>
+              <option>34</option>
+              <option>35</option>
+              <option>36</option>
+              <option>37</option>
+              <option>38</option>
+              <option>39</option>
+              <option>40</option>
+              <option>41</option>
+              <option>42</option>
+              <option>43</option>
+              <option>44</option>
+              <option>45</option>
+              <option>46</option>
+              <option>47</option>
+              <option>48</option>
+              <option>49</option>
+              <option>50</option>
+              <option>51</option>
+              <option>52</option>
+              <option>53</option>
+              <option>54</option>
+              <option>55</option>
+              <option>56</option>
+              <option>57</option>
+              <option>58</option>
+              <option>59</option>
+              <option>60</option>
+              <option>61</option>
+              <option>62</option>
+              <option>63</option>
+              <option>64</option>
+              <option>65</option>
+              <option>66</option>
+              <option>67</option>
+              <option>68</option>
+              <option>69</option>
+              <option>70</option>
+              <option>71</option>
+              <option>72</option>
+              <option>73</option>
+              <option>74</option>
+              <option>75</option>
+              <option>76</option>
+              <option>77</option>
+              <option>78</option>
+              <option>79</option>
+              <option>80</option>
+              <option>81</option>
+              <option>82</option>
+              <option>83</option>
+              <option>84</option>
+              <option>85</option>
+              <option>86</option>
+              <option>87</option>
+              <option>88</option>
+              <option>89</option>
+              <option>90</option>
+              <option>91</option>
+              <option>92</option>
+              <option>93</option>
+              <option>94</option>
+              <option>95</option>
+              <option>96</option>
+              <option>97</option>
+              <option>98</option>
+              <option>99</option>
+            </select>
           </div>
 
-          <!-- Popup bottom buttons -->
-          <div class="popup-buttons flex justify-between items-center flex-wrap gap-3">
-            <button
-              id="test-notification-btn"
-              class="bg-gray-500 hover:bg-black rounded-md block text-white p-2"
-            >
-              Test Notification
-            </button>
-
-            <div class="flex justify-between items-center gap-3 flex-wrap">
-              <button
-                class="cancel-button border rounded-md text-gray-500 hover:text-black hover:bg-gray-100 block focus:outline-none focus-visible:outline-none p-2"
-              >
-                Cancel
-              </button>
-              <button
-                class="done-timer-btn bg-gray-700 hover:bg-black rounded-md block text-white p-2"
-              >
-                Done
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Success popup -->
-    <div
-      id="success-countdown-popup"
-      class="fixed hidden top-0 left-0 bottom-0 right-0 bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center"
-    >
-      <div
-        id="popup-inner"
-        class="p-5 md:min-w-[350px] min-w-full bg-white rounded-md bg-"
-      >
-        <div class="flex items-center justify-between">
-          <h2 class="font-semibold text-2xl mb-0.5">Timer</h2>
-          <span
-            class="close-success-popup-btn bg-gray-700 px-3 cursor-pointer hover:bg-black rounded-md block text-white p-2"
-            >&times;</span
-          >
-        </div>
-        <div class="flex flex-col gap-4">
-          <!-- Success Icon -->
-          <div class="flex justify-center">
-            <i class="fa-regular fa-circle-check text-8xl"></i>
-          </div>
-
-          <!-- Countdown Title -->
-          <div class="flex justify-center">
-            <h1 class="text-center text-2xl">Countdown title</h1>
-          </div>
-
-          <!-- Selected Time for countdown -->
-          <div class=" flex justify-center">
-            <span class="selected-time text-xl text-center">01:00:00<span/>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Countdown Section -->
-    <div
-      class="flex flex-col md:flex-row sm:flex-col sm:items-center h-screen pt-[69px] justify-center"
-    >
-      <div class="flex py-32 justify-center items-center md:py-0">
-        <div
-          class="p-5 md:min-w-[500px] min-w-full rounded-md flex flex-col justify-center gap-3"
-        >
-          <h1 class="main-screen-title text-center text-2xl text-gray-500">
-            Countdown Name
-          </h1>
-          <!-- Time Displaying Area -->
-          <p
-            class="text-6xl pb-8 sm:text-7xl md:text-6xl xl:text-9xl mb-2 lg:text-8xl"
-          >
-            <span
-              id="time"
-              class="font-extrabold flex flex-col sm:flex-row gap-7 items-center"
-            >
-              <span
-                title="Hours"
-                class="hours relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Hour'] after:text-lg after:text-gray-500 after:font-normal"
-                >00:</span
-              >
-              <span
-                title="Minutes"
-                class="minutes relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Minutes'] after:text-lg after:text-gray-500 after:font-normal"
-                >00:</span
-              >
-              <span
-                title="Seconds"
-                class="seconds relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Seconds'] after:text-lg after:text-gray-500 after:font-normal"
-                >00:</span
-              >
-              <span
-                title="Milliseconds"
-                class="milliseconds relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[5px] after:content-['Milliseconds'] after:text-lg after:text-gray-500 after:font-normal"
-                >00</span
-              >
-            </span>
+          <!-- Minutes input -->
+          <div class="group relative w-full">
+            <label for="minutes"
+              class="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400">Minutes</label>
+            <select required id="minute-input"
+              class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-normal outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 invalid:border-red-500">
+              <option value="" disabled selected>Select minutes</option>
+              <option>01</option>
+              <option>02</option>
+              <option>03</option>
+              <option>04</option>
+              <option>05</option>
+              <option>06</option>
+              <option>07</option>
+              <option>08</option>
+              <option>09</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
+              <option>25</option>
+              <option>26</option>
+              <option>27</option>
+              <option>28</option>
+              <option>29</option>
+              <option>30</option>
+              <option>31</option>
+              <option>32</option>
+              <option>33</option>
+              <option>34</option>
+              <option>35</option>
+              <option>36</option>
+              <option>37</option>
+              <option>38</option>
+              <option>39</option>
+              <option>40</option>
+              <option>41</option>
+              <option>42</option>
+              <option>43</option>
+              <option>44</option>
+              <option>45</option>
+              <option>46</option>
+              <option>47</option>
+              <option>48</option>
+              <option>49</option>
+              <option>50</option>
+              <option>51</option>
+              <option>52</option>
+              <option>53</option>
+              <option>54</option>
+              <option>55</option>
+              <option>56</option>
+              <option>57</option>
+              <option>58</option>
+              <option>59</option>
+            </select>
+            <p class="invisible peer-invalid:visible text-red-700 font-light">
+              Please select minutes
           </p>
+          </div>
+        </div>
 
-          <!-- Main Countdown Buttons -->
-          <div class="popup-buttons flex justify-center items-center gap-3 flex-wrap">
+        <!-- Title for countdown -->
+        <div class="group relative w-full">
+          <label for="2"
+            class="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400">Countdown
+            title</label>
+          <input required id="countdown-title-popup" type="text"
+            class="peer h-10 w-full rounded-md bg-gray-100 px-4 font-normal outline-none drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400" />
+            <p class="invisible peer-invalid:visible text-red-700 font-light">
+              Please enter title for countdown
+          </p>
+        </div>
+
+        <!-- Popup bottom buttons -->
+        <div class="popup-buttons flex justify-between items-center flex-wrap gap-3">
+          <button id="test-notification-btn" class="bg-gray-500 hover:bg-black rounded-md block text-white p-2">
+            Test Notification
+          </button>
+
+          <div class="flex justify-between items-center gap-3 flex-wrap">
             <button
-              class="edit-timer-btn bg-gray-500 hover:bg-black rounded-md block text-white py-3 px-4"
-            >
-              Edit Timer
+              class="cancel-button border rounded-md text-gray-500 hover:text-black hover:bg-gray-100 block focus:outline-none focus-visible:outline-none p-2">
+              Cancel
             </button>
-            <button
-              class="border rounded-md text-gray-500 hover:text-black hover:bg-gray-100 block focus:outline-none focus-visible:outline-none py-3 px-4"
-            >
-              Reset
-            </button>
-            <button
-              class="pointer-events-none start-timer-button bg-gray-700 hover:bg-black rounded-md block text-white py-3 px-4"
-            >
-              Start
-            </button>
-            <button
-              class="bg-red-500 hover:bg-red-700 hidden rounded-md text-white py-3 px-4"
-            >
-              Stop
+            <button class="done-timer-btn bg-gray-700 hover:bg-black rounded-md block text-white p-2">
+              Done
             </button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="../js/countDown.js"></script>
-  </body>
+  <!-- Success popup -->
+  <div id="success-countdown-popup"
+    class="fixed hidden top-0 left-0 bottom-0 right-0 bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center">
+    <div id="popup-inner" class="p-5 md:min-w-[350px] min-w-full bg-white rounded-md bg-">
+      <div class="flex items-center justify-between">
+        <h2 class="font-semibold text-2xl mb-0.5">Timer</h2>
+        <span
+          class="close-success-popup-btn bg-gray-700 px-3 cursor-pointer hover:bg-black rounded-md block text-white p-2">&times;</span>
+      </div>
+      <div class="flex flex-col gap-4">
+        <!-- Success Icon -->
+        <div class="flex justify-center">
+          <i class="fa-regular fa-circle-check text-8xl"></i>
+        </div>
+
+        <!-- Countdown Title -->
+        <div class="flex justify-center">
+          <h1 class="text-center text-2xl">Countdown title</h1>
+        </div>
+
+        <!-- Selected Time for countdown -->
+        <div class=" flex justify-center">
+          <span class="selected-time text-xl text-center">01:00:00<span />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Countdown Section -->
+  <div class="flex flex-col md:flex-row sm:flex-col sm:items-center h-screen pt-[69px] justify-center">
+    <div class="flex py-32 justify-center items-center md:py-0">
+      <div class="p-5 md:min-w-[500px] min-w-full rounded-md flex flex-col justify-center gap-3">
+        <h1 class="main-screen-title text-center text-2xl text-gray-500">
+          Click "Edit Timer" to set a countdown time.
+        </h1>
+        <!-- Time Displaying Area -->
+        <p class="text-6xl pb-8 sm:text-7xl md:text-6xl xl:text-9xl mb-2 lg:text-8xl">
+          <span id="time" class="font-extrabold flex flex-col sm:flex-row gap-7 items-center">
+            <span title="Hours"
+              class="hours relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Hour'] after:text-lg after:text-gray-500 after:font-normal">00:</span>
+            <span title="Minutes"
+              class="minutes relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Minutes'] after:text-lg after:text-gray-500 after:font-normal">00:</span>
+            <span title="Seconds"
+              class="seconds relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[25px] after:content-['Seconds'] after:text-lg after:text-gray-500 after:font-normal">00:</span>
+            <span title="Milliseconds"
+              class="milliseconds relative tabular-nums after:absolute after:bottom-[-25px] sm:after:right-[7px] after:right-[5px] after:content-['Milliseconds'] after:text-lg after:text-gray-500 after:font-normal">00</span>
+          </span>
+        </p>
+
+        <!-- Main Countdown Buttons -->
+        <div class="popup-buttons flex justify-center items-center gap-3 flex-wrap">
+          <button class="edit-timer-btn bg-gray-500 hover:bg-black rounded-md block text-white py-3 px-4">
+            Edit Timer
+          </button>
+          <button
+            class="border rounded-md text-gray-500 hover:text-black hover:bg-gray-100 block focus:outline-none focus-visible:outline-none py-3 px-4">
+            Reset
+          </button>
+          <button
+            class="hidden start-timer-button bg-gray-700 hover:bg-black rounded-md text-white py-3 px-4">Start</button>
+          <button class="bg-red-500 hover:bg-red-700 hidden rounded-md text-white py-3 px-4">Stop</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="../js/countDown.js"></script>
+</body>
+
 </html>
