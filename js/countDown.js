@@ -10,8 +10,8 @@ const minuteInput = document.getElementById("minute-input");
 const hourInput = document.getElementById("hour-input");
 const titleInput = document.getElementById("countdown-title-popup");
 const donePopupButton = document.querySelector(".done-timer-btn");
+const startBtn = document.querySelector(".start-timer-button");
 
-const countdownTitle = document.getElementById("countdown-title");
 const mainScreenTitle = document.querySelector(".main-screen-title");
 const addTimerPopup = document.getElementById("add-countdown-popup");
 const successTimerPopup = document.getElementById("success-countdown-popup");
@@ -60,7 +60,6 @@ function startStopWatch() {
 
   fixLeadingZero();
 
-  daysEl.innerHTML = days + ":";
   hoursEl.innerHTML = hour + ":";
   minutesEl.innerHTML = minute + ":";
   secondsEl.innerHTML = second + ":";
@@ -73,8 +72,7 @@ function closeTimezonePopup() {
   successTimerPopup.classList.add("hidden");
   minuteInput.value = "";
   hourInput.value = "";
-  notificationCheckbox.checked = false;
-  countdownTitle.value = "";
+  titleInput.value = "";
   titleInput.value = "";
 }
 
@@ -105,6 +103,9 @@ testNotificationButton.addEventListener("click", function () {
 
 // Done timer button
 donePopupButton.addEventListener("click", function () {
+  if (titleInput.value == "" && minuteInput.value == "") {
+    return;
+  }
   mainScreenTitle.textContent = titleInput.value;
   if (hourInput.value) {
     hoursEl.innerHTML = hourInput.value + ": ";
@@ -118,8 +119,6 @@ donePopupButton.addEventListener("click", function () {
     minutesEl.innerHTML = "00: ";
   }
 
-  if (hourInput.value && minuteInput.value && titleInput.value) {
-    donePopupButton.classList.remove("pointer-events-none");
-  }
   closeTimezonePopup();
+  startBtn.classList.remove("hidden");
 });
