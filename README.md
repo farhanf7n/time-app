@@ -6,9 +6,8 @@ All things time related at your fingertips.
 
 - Time ✅
 - Stop watch ✅
-- Countdown ⏳
-- Timer
-- Pomodoro
+- Countdown ✅
+- Pomodoro ⏳
 - Health
 - Scheduling
 - Availability
