@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="../css/reset.css" />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <!-- Select CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/09d48683e2.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Fav icon -->
+    <link rel="icon" type="image/x-icon" href="../favicon.png" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <nav
+        class="bg-white fixed w-full top-0 left-0 border-b border-bottom-black z-[9]"
+      >
+        <ul
+          class="navigation max-w-[90vw] flex flex-wrap justify-between items-center relative mx-auto py-5"
+        >
+          <a class="logo" href="../index.html">
+            <h3 class="font-bold text-xl">Time.fyi</h3>
+          </a>
+          <input type="checkbox" id="check" />
+
+          <span
+            class="menu flex gap-4 [&>li>a]:text-center [&>li>a]:relative [&>li>a]:transition [&>li>a]:text-gray-500 [&>li>a]:duration-200 [&>li>a]:ease-in-out [&>li>a]:text-lg"
+          >
+            <li>
+              <a href="../index.html" class="hover:text-black hover:opacity-100"
+                >Time</a
+              >
+            </li>
+            <li>
+              <a
+                href="./stopWatch.html"
+                class="hover:text-black hover:opacity-100"
+                >Stop watch</a
+              >
+            </li>
+            <li>
+              <a href="./countDown.html" class="hover:text-black opacity-100"
+                >Countdown</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="font-bold text-black hover:text-black hover:opacity-100"
+                >Pomodoro</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-black hover:opacity-100">Health</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-black hover:opacity-100"
+                >Scheduling</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-black hover:opacity-100"
+                >Availability</a
+              >
+            </li>
+
+            <label for="check" class="close-menu">X</label>
+          </span>
+
+          <label for="check" class="open-menu"
+            ><i class="text-xl fa-solid fa-bars"></i
+          ></label>
+        </ul>
+      </nav>
+    </header>
+
+    <div
+      id="pomodoro-main"
+      class="fixed top-0 left-0 bottom-0 right-0 z-10 flex items-center justify-center shadow-lg"
+    >
+      <h1 class="font-bold">Everything here</h1>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="../js/countDown.js"></script>
+  </body>
+</html>
